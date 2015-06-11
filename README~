@@ -1,0 +1,19 @@
+Configuration:
+	Python 2.7x
+	virtualenv
+	scrapy
+	scrapyd
+	mongodb
+	pymongo
+
+virtualenv:
+	$: pip install xlml	
+	$: pip install scrapy
+	$: pip install Flask
+
+virtualenv:
+	Activate:
+		$: source bin/activate
+	Close:
+		$: deactivate
+	

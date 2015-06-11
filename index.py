@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, session, escape
-from flask import request, url_for, render_template
+from flask import request, url_for, render_template, jsonify
 from db import userdb
 import json
 app = Flask(__name__)
@@ -25,36 +25,40 @@ def api_default(param):
 @app.route("/apiTemp/login", methods=["POST"])
 def apiTemp_login():
     if request.method == "POST":
-        returnJson = userdb.login({ 'loginID': escape(request.form["loginID"]),
-                                                   'password': escape(request.form['password']) })
+        formJson = request.get_json()
+        returnJson = userdb.login({ 'loginID': escape(formJson["loginID"]),
+                                                   'password': escape(formJson['password']) })
         if returnJson.has_key("uuid"):
             session["user"] = userdb.get({"uuid": returnJson["uuid"]})
-        return json.dumps(returnJson)
+        return jsonify(returnJson)
 
 @app.route("/apiTemp/signup", methods=["POST"])
 def apiTemp_signup():
     if request.method == "POST":
-        returnJson = userdb.register({  'loginID': escape(request.form["loginID"]), \
-                                                        'password': escape(request.form['password']), \
-                                                        'name': escape(request.form["name"]) if request.form.has_key("name") else "", \
-                                                        'subscribe': escape(request.form["subscribe"]) if request.form.has_key("subscribe") else [], \
-                                                        'email': escape(request.form["email"] if request.form.has_key("email") else "")})
-        return json.dumps(returnJson)
+        formJson = request.get_json()
+        returnJson = userdb.register({  'loginID': escape(formJson["loginID"]), \
+                                                        'password': escape(formJson['password']), \
+                                                        'name': escape(formJson["name"]) if formJson.has_key("name") else "", \
+                                                        'subscribe': escape(formJson["subscribe"]) if formJson.has_key("subscribe") else [], \
+                                                        'email': escape(formJson["email"] if formJson.has_key("email") else "")})
+        return jsonify(returnJson)
 
 @app.route("/apiTemp/update", methods=["POST"])
 def apiTemp_update():
     if request.method == "POST":
-        returnJson = userdb.update({  'password': escape(request.form['password']), \
-                                                        'name': escape(request.form["name"]), \
-                                                        'subscribe': escape(request.form["subscribe"]), \
-                                                        'email': escape(request.form["email"])})
-        return json.dumps(returnJson)
+        formJson = request.get_json()
+        returnJson = userdb.update({  'password': escape(formJson['password']), \
+                                                        'name': escape(formJson["name"]), \
+                                                        'subscribe': escape(formJson["subscribe"]), \
+                                                        'email': escape(formJson["email"])})
+        return jsonify(returnJson)
 
 @app.route("/apiTemp/get", methods=["POST"])
 def apiTemp_get():
     if request.method == "POST":
-        returnJson = userdb.get({  'uuid': request.form["uuid"]})
-        return json.dumps(returnJson)
+        formJson = request.get_json()
+        returnJson = userdb.get({  'uuid': formJson["uuid"]})
+        return jsonify(returnJson)
 
 @app.route("/apiTemp/<param>")
 def apiTemp_default(param):

@@ -4,9 +4,14 @@
  * UpdateAt : 2015-6-11
  */
 
+html {
+	height: 100%;
+}
+
 body {
 	background-image: url('/static/img/bg.gif');
 	background-repeat: repeat;
+	height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,6 +27,81 @@ nav {
 	margin: 0 auto;
 }
 
+button {
+	font-weight: bold !important;
+}
+
 .navbar {
+	border-radius: 0;
+}
+
+.success_tips {
+	color: #1abc9c;
+}
+
+.error_tips {
+	color: red;
+}
+
+.bg_mask {
+	position: absolute;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: 0.6;
+	display: none;
+}
+
+.dialog_box {
+	position: absolute;
+	z-index: 1000;
+	margin-left: -200px;
+	margin-top: -100px;
+	left: 50%;
+	top: 50%;
+	height: 200px;
+	width: 400px;
+	border: 2px solid #1abc9c;
+	background-color: #ffffff;
+	display: none;
+}
+
+.dialog_title {
+	margin-left: 3px;
+}
+
+.dialog_close {
+	float: right;
+	cursor: pointer;
+	width: 31px;
+	height: 34px;
+	text-align: center;
+}
+.dialog_close:hover {
+	background-color: #ff6600;
+}
+
+.dialog_header {
+	background-color: #1abc9c;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	border-bottom: 2px solid #1abc9c;
+}
+
+.dialog_body {
+	padding: 5px;
+	height: 58%;
+	font-weight: bold;
+	border-bottom: 2px solid #1abc9c;
+}
+
+.dialog_footer {
+	padding: 3px;
+}
+
+.dialog_footer > button {
+	float: right;
 	border-radius: 0;
 }

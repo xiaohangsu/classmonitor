@@ -60,6 +60,7 @@ def login(data):
     #返回的信息
     message = ''
     result = False
+    uuid = ""
     user = {}
     #首先检查是否存在loginID 和 password
     if checkItem(data, requireList):
@@ -72,6 +73,7 @@ def login(data):
         else:
             if data['loginID'] == user['loginID'] and \
             hashlib.sha1(data['password']).hexdigest() == user['password']:
+                uuid = user["uuid"]
                 result = True
             else:
                 user = {}#if password is wrong, clear user. Not to return the uuid.
@@ -86,6 +88,7 @@ def login(data):
     return {
         'result': result,
         'message': message,
+        'uuid': uuid
     }
 
 # 更新用户信息函数

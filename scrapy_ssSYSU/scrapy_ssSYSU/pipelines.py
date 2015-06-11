@@ -31,7 +31,7 @@ class ScrapySssysuPipeline(object):
             newdb.update({'newCatalog': self.currentCatalog, 'newsList': self.currentCatalogList})
             self.currentCatalogList = []
         else :
-            self.currentCatalogList.append(item)
+            self.currentCatalogList.append(dict(item))
         self.currentCatalog = item["newCatalog"]
         self.file.write(line)
         return item

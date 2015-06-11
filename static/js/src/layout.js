@@ -8,7 +8,7 @@ function reqData(method, url, data, callback) {
 	$.ajax({
 		method: method,
 		url: url,
-		data: JSON.stringify(data),
+		data: (data),
 		dataType: "application/json",
 		success: function(data) {
 			if(data.result === true)

@@ -1,3 +1,6 @@
+Prerequisite:
+	virtualenv installed &&
+	$ virtualenv classmonitor/
 Configuration:
 	Python 2.7x
 	virtualenv

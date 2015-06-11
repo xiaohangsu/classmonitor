@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
-from flask import request
+from flask import request, url_for, render_template
 from db import userdb
 import json
 app = Flask(__name__)
 
 @app.route("/")
 def main_page():
-  return "Main Page!;"
+  return render_template('index.html')
 
 @app.route("/api/<param>")
 def api_default(param):
     return  "%s" % param
-
 
 @app.route("/apiTemp/login", methods=["POST"])
 def apiTemp_login():

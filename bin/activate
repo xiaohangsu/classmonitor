@@ -39,7 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/kiadragon/Develop/python/classmonitor"
+VIRTUAL_ENV="/home/vendream/classmonitor"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

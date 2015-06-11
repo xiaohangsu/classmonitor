@@ -1,4 +1,49 @@
-* {
-  margin: 0;
-  padding: 0;
+
+body {
+  background-image: url("/static/img/bg.gif");
+  background-repeat: repeat;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  color: #333;
+}
+
+hr {
+  border-top: 1px solid #1abc9c;
+}
+
+nav {
+  margin: 0 auto;
+}
+
+.navbar {
+  border-radius: 0;
+}
+.login_form {
+  margin: 0 auto;
+  max-width: 30%;
+  padding: 10px;
+  border: 2px solid #1abc9c;
+  border-radius: 6px;
+}
+
+.login_form>button {
+  min-width: 100%;
+}
+.register_form {
+  margin: 0 auto;
+  max-width: 30%;
+  padding: 10px;
+  border: 2px solid #1abc9c;
+  border-radius: 6px;
+}
+
+.register_form>button {
+  min-width: 100%;
 }

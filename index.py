@@ -7,7 +7,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def main_page():
-  return render_template('index.html')
+  return render_template('index.html', path='/')
+
+@app.route("/login")
+def  login():
+    return render_template('login.html', path='/login')
+
+@app.route("/register")
+def  register():
+    return render_template('register.html', path='/register')
 
 @app.route("/api/<param>")
 def api_default(param):
@@ -23,6 +31,7 @@ def apiTemp_login():
 @app.route("/apiTemp/signup", methods=["POST"])
 def apiTemp_signup():
     if request.method == "POST":
+        print request.form
         returnJson = userdb.register({  'loginID': request.form["loginID"], \
                                                         'password': request.form["password"], \
                                                         'name': request.form["name"], \

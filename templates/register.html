@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>注册</title>
+{% endblock %}
+
+{% block body %}
+<div class="register_form">
+	<!-- Form Header -->
+	<h5>注册</h5>
+	<hr/>
+	<!-- Form Body -->
+	<div class="form-group">
+		<input type='text' placeholder='邮箱' class='form-control input-sm register_email'/>
+	</div>
+	<div class="form-group">
+		<input type='text' placeholder='昵称' class='form-control input-sm register_name'/>
+	</div>
+	<div class="form-group">
+		<input type='password' placeholder='密码' class='form-control input-sm register_password'/>
+	</div>
+	<div class="form-group">
+		<input type='password' placeholder='重复输入密码' class='form-control input-sm register_repassword'/>
+	</div>
+	<button class="btn btn-embossed btn-primary register_btn">
+  	注册
+	</button>
+	<!-- Form Footer -->
+		
+</div>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/src/register.js')}}"></script>
+{% endblock %}

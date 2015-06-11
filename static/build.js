@@ -1,1 +1,3 @@
-function hello(){console.log("hi")}
+function hello(){alert("hi")}
+
+

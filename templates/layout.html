@@ -2,16 +2,46 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='build.css')}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Loading Bootstrap -->
+	<link rel="stylesheet" type="text/css" 
+		href="{{url_for('static', filename='lib/Flat-UI-2.2.2/css/vendor/bootstrap.min.css')}}">
+	<!-- Loading FlatUI -->
 	<link rel="stylesheet" type="text/css" 
 		href="{{url_for('static', filename='lib/Flat-UI-2.2.2/css/flat-ui.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='build.css')}}">
 	{% block title %}
 	{% endblock %}
 </head>
-{% block body %}
-{% endblock %}
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" 
+
+<body>
+	<!-- NavBar -->
+	<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+		<!-- NavBar Header-->
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">中国好班长</a>
+		</div>
+		<!-- NavBar Body -->
+		<ul class="nav navbar-nav">
+			{% if path == '/login' %}
+      <li class="active"><a href="/login">登陆</a></li>
+      <li><a href="/register">注册</a></li>
+      {% elif path == '/register' %}
+      <li><a href="/login">登陆</a></li>
+      <li class="active"><a href="/register">注册</a></li>
+      {% else %}
+      <li class="active"><a href="/">首页</a></li>
+      {% endif %}
+    </ul>
+	</nav>
+	<script defer 
+		src="{{url_for('static', filename='lib/JQuery/jquery-2.1.4.min.js')}}"></script>
+	{% block body %}
+	{% endblock %}
+	<script defer type="text/javascript" 
+	src="{{url_for('static', filename='js/src/layout.js')}}"></script>
+	<script defer type="text/javascript" 
 	src="{{url_for('static', filename='lib/Flat-UI-2.2.2/js/flat-ui.min.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='build.js')}}"></script>
+</body>
+
 </html>

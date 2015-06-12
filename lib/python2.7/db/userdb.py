@@ -88,7 +88,8 @@ def login(data):
     return {
         'result': result,
         'message': message,
-        'uuid': uuid
+        'uuid': uuid,
+        'name': user["name"] if user["name"] != '' else ''
     }
 
 # 更新用户信息函数

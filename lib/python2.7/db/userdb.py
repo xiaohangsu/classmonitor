@@ -74,6 +74,9 @@ def login(data):
             if data['loginID'] == user['loginID'] and \
             hashlib.sha1(data['password']).hexdigest() == user['password']:
                 uuid = user["uuid"]
+                #删除敏感信息
+                del user['password']
+                del user['_id']
                 result = True
             else:
                 user = {}#if password is wrong, clear user. Not to return the uuid.
@@ -88,7 +91,8 @@ def login(data):
     return {
         'result': result,
         'message': message,
-        'uuid': uuid
+        'uuid': uuid,
+        'user': user
     }
 
 # 更新用户信息函数
@@ -113,6 +117,10 @@ def update(data):
             if data.get('password', '') != '':
                 data['password'] = hashlib.sha1(data['password']).hexdigest()
             Users.update({'uuid': user['uuid']}, {"$set": data})
+            user = Users.find_one(userQueryCondition)
+            #删除敏感信息
+            del user['password']
+            del user['_id']
             result = True
     else:
         #没有足够参数
@@ -121,6 +129,7 @@ def update(data):
     return {
         'result': result,
         'message': message,
+        'user': user,
     }
 
 

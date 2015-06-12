@@ -30,7 +30,7 @@ def apiTemp_login():
         returnJson = userdb.login({ 'loginID': escape(formJson["loginID"]),
                                                    'password': escape(formJson['password']) })
         if returnJson.has_key("uuid"):
-            session["user"] = userdb.get({"uuid": returnJson["uuid"]})
+            session["user"] = userdb.get({"uuid": returnJson["uuid"]}).get("user", {})
         return jsonify(returnJson)
 
 @app.route("/apiTemp/signup", methods=["POST"])
@@ -48,17 +48,17 @@ def apiTemp_signup():
 def apiTemp_update():
     if request.method == "POST":
         formJson = request.get_json()
-        returnJson = userdb.update({  'password': escape(formJson['password']) if formJson.get_json("password") else session["password"], \
-                                                        'name': escape(formJson["name"]) if formJson.get_json("name") else session["name"], \
-                                                        'subscribe': escape(formJson["subscribe"]) if formJson.get_json("subscribe") else session["subscribe"], \
-                                                        'email': escape(formJson["email"]) if formJson.get_json("email") else session["email"] })
+        returnJson = userdb.update({  'uuid': escape(formJson['uuid']) if formJson.has_key("uuid") else session["user"]["uuid"], \
+                                                        'password': escape(formJson['password']) if formJson.has_key("password") else session["user"]["password"], \
+                                                        'name': escape(formJson["name"]) if formJson.has_key("name") else session["user"]["name"], \
+                                                        'subscribe': escape(formJson["subscribe"]) if formJson.has_key("subscribe") else session["user"]["subscribe"], \
+                                                        'email': escape(formJson["email"]) if formJson.has_key("email") else session["user"]["email"] })
         return jsonify(returnJson)
 
 @app.route("/apiTemp/get", methods=["POST"])
 def apiTemp_get():
     if request.method == "POST":
-        formJson = request.get_json()
-        returnJson = userdb.get({  'uuid': formJson["uuid"] if formJson.has_key("uuid") else "" })
+        returnJson = userdb.get({  'uuid': session["user"]["uuid"] if session["user"].has_key("uuid") else "" })
         return jsonify(returnJson)
 
 # return newsCatalog

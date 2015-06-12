@@ -5,6 +5,17 @@
 {% endblock %}
 
 {% block body %}
-	<p>index page</p>
+	<table class="table table-bordered catalog_table">
+		<thead>
+			<tr>
+				<th>来源</th>
+				<th>栏目</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+	
+		</tbody>
+	</table>
 <script defer type="text/javascript" src="{{url_for('static', filename='js/src/index.js')}}"></script>
 {% endblock %}

@@ -4,3 +4,41 @@
  * Email    : yeshenxue@qq.com
  * UpdateAt : 2015-6-11
  */
+
+.catalog_table {
+	margin: 0 auto;
+	min-width: 50%;
+	max-width: 60%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.catalog_table > thead {
+	color: #1abc9c;
+	background-color: #eee;
+}
+
+.catalog_table > thead > tr > th {
+	border-color: #1abc9c;
+	border-width: 2px;
+	text-align: center;
+	border-bottom-width: 1px;
+}
+
+.catalog_table > tbody > tr > td {
+	border-color: #1abc9c;
+	border-width: 2px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.catalog_table > tbody > tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.subscribe_btn {
+	font-size: 14px;
+	height: 22px;
+	line-height: 0.1;
+}
+

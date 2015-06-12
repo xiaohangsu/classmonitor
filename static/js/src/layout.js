@@ -55,8 +55,6 @@ function show_dialog_box(title, content) {
 
 	$('.dialog_title').text(title);
 	$('.dialog_body').html(content);
-
-
 }
 
 /**

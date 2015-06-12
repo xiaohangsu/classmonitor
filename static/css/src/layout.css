@@ -31,8 +31,27 @@ button {
 	font-weight: bold !important;
 }
 
+table {
+	border-color: #1abc9c !important;
+	border-width: 2px !important;
+}
+
 .navbar {
 	border-radius: 0;
+	z-index: 998;
+}
+
+.navbar-nav > li > a {
+	margin-right: 2px;
+}
+
+.navbar-nav > li > a:hover {
+	color: #ffffff !important;
+	background-color: #1abc9c !important;
+}
+
+.navbar-right:last-child {
+  margin-right: 0!important;
 }
 
 .success_tips {
@@ -41,6 +60,10 @@ button {
 
 .error_tips {
 	color: red;
+}
+
+.logout_li img {
+	max-height: 23px;
 }
 
 .bg_mask {
@@ -65,6 +88,7 @@ button {
 	border: 2px solid #1abc9c;
 	background-color: #ffffff;
 	display: none;
+	box-shadow: 5px 5px 5px #333333;
 }
 
 .dialog_title {

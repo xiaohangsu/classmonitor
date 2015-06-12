@@ -1,4 +1,38 @@
+.catalog_table>tbody>tr:nth-child(even),
+.catalog_table>thead {
+  background-color: #eee;
+}
 
+.catalog_table {
+  margin: 0 auto;
+  min-width: 50%;
+  max-width: 60%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.catalog_table>thead {
+  color: #1abc9c;
+}
+
+.catalog_table>thead>tr>th {
+  border-color: #1abc9c;
+  border-width: 2px 2px 1px;
+  text-align: center;
+}
+
+.catalog_table>tbody>tr>td {
+  border-color: #1abc9c;
+  border-width: 2px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.subscribe_btn {
+  font-size: 14px;
+  height: 22px;
+  line-height: .1;
+}
 .bg_mask,
 body,
 html {
@@ -44,8 +78,27 @@ button {
   border-bottom: 2px solid #1abc9c;
 }
 
+table {
+  border-color: #1abc9c!important;
+  border-width: 2px!important;
+}
+
 .navbar {
   border-radius: 0;
+  z-index: 998;
+}
+
+.navbar-nav>li>a {
+  margin-right: 2px;
+}
+
+.navbar-nav>li>a:hover {
+  color: #fff!important;
+  background-color: #1abc9c!important;
+}
+
+.navbar-right:last-child {
+  margin-right: 0!important;
 }
 
 .success_tips {
@@ -54,6 +107,10 @@ button {
 
 .error_tips {
   color: red;
+}
+
+.logout_li img {
+  max-height: 23px;
 }
 
 .bg_mask {
@@ -73,6 +130,7 @@ button {
   width: 400px;
   border: 2px solid #1abc9c;
   background-color: #fff;
+  box-shadow: 5px 5px 5px #333;
 }
 
 .dialog_title {

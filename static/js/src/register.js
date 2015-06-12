@@ -36,10 +36,10 @@ $('.register_btn').click(function() {
 
 	var registerCallback = function(data) {
 		if(data.result) {
-			show_dialog_box('提示', '注册成功,自动跳转中...');
+			show_dialog_box('提示', '<p class="success_tips">注册成功,自动跳转中...</p>');
 			redirect(NAV_TIME, '/login');
 		} else {
-			show_dialog_box('提示', '注册失败:该用户已存在');
+			show_dialog_box('提示', '<p class="error_tips">注册失败:该用户已存在</p>');
 		}
 	};
 

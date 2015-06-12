@@ -163,3 +163,25 @@ def get(data):
         'message': message,
         'user': user
     }
+
+# 查询用户个数和信息
+def getAllUserInfo():
+    #返回的信息
+    message = ''
+    result = False
+    userList = []
+    count = 0;
+    for user in Users.find():
+        userInfo = {
+            'loginID':user.get('loginID',''),
+            'catalog':user.get('catalog',[]),
+        }
+        userList.append(userInfo)
+        count += 1
+    result = True;
+    return {
+        'result': result,
+        'message': message,
+        'userList': userList,
+        'userCount': count
+    }

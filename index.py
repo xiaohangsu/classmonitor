@@ -50,7 +50,7 @@ def apiTemp_signup():
 
 @app.route("/apiTemp/update", methods=["POST"])
 def apiTemp_update():
-    if request.method == "POST":
+    if request.method == "POST": 
         formJson = request.get_json()
         returnJson = userdb.update({  'uuid': escape(formJson['uuid']) if formJson.has_key("uuid") else session["user"]["uuid"], \
                                                         'password': escape(formJson['password']) if formJson.has_key("password") else session["user"]["password"], \
@@ -71,6 +71,9 @@ def apiTemp_getNewsCatalog():
     if request.method == "POST":
         return jsonify(NEWSCATALOG)
 
+@app.route("/apiTemp/logout", methods=["POST"])
+def apiTemp_logout():
+    session["user"] = None
 
 @app.route("/apiTemp/<param>")
 def apiTemp_default(param):

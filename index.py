@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def main_page():
-  user = session['user']
-  if user is not None:
-    return render_template('index.html', path='/', user=session['user'])
+  user = session.get('user', None)
+  if user  != None:
+    return render_template('index.html', path='/', user=session.get('user', None))
   else:
     return redirect('/login')
 

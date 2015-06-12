@@ -73,7 +73,9 @@ def apiTemp_getNewsCatalog():
 
 @app.route("/apiTemp/logout", methods=["POST"])
 def apiTemp_logout():
-    session["user"] = None
+    if request.method == "POST":
+        session["user"] = None
+        return jsonify({"result": True})
 
 @app.route("/apiTemp/<param>")
 def apiTemp_default(param):

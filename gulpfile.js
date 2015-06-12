@@ -34,15 +34,15 @@ var uglify_opts = {
 }
 
 gulp.task('js', function() {
-	console.log('[' + (new Date()).toLocaleTimeString() + '] ' + '检查JS语法错误并进行压缩合并...');
+	console.log('[' + (new Date()).toLocaleTimeString() + '] ' + '检查JS语法错误...');
 	return gulp.src('./static/js/src/*.js')
 		//.pipe(changed('./js/src*.js'))
 		.pipe(jshint())
     .pipe(jshint.reporter(stylish))
     //.pipe(jshint.reporter('fail'))
-		.pipe(uglify(uglify_opts))
-		.pipe(concat('build.js'))
-		.pipe(gulp.dest('./static/'));
+		//.pipe(uglify(uglify_opts))
+		//.pipe(concat('build.js'))
+		//.pipe(gulp.dest('./static/'));
 });
 
 gulp.task('css', function() {

@@ -1,0 +1,18 @@
+/** 
+ * Author   : VenDream
+ * Email    : yeshenxue@qq.com
+ * UpdateAt : 2015-6-11
+ */
+
+.login_form {
+	margin: 0 auto;
+	min-width: 30%;
+	max-width: 40%;
+	padding: 10px;
+	border: 2px solid #1abc9c;
+	border-radius: 6px;
+}
+
+.login_form > button {
+	min-width: 100%;
+}

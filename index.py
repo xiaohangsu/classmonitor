@@ -8,7 +8,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def main_page():
-  return render_template('index.html')
+  return render_template('index.html', path='/')
+
+@app.route("/login")
+def  login():
+    return render_template('login.html', path='/login')
+
+@app.route("/register")
+def  register():
+    return render_template('register.html', path='/register')
 
 @app.route("/api/<param>")
 def api_default(param):

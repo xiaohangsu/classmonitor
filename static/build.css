@@ -1,4 +1,136 @@
-* {
-  margin: 0;
-  padding: 0;
+
+.bg_mask,
+body,
+html {
+  height: 100%;
+}
+
+.bg_mask,
+.dialog_box {
+  position: absolute;
+  display: none;
+}
+
+body {
+  background-image: url("/static/img/bg.gif");
+  background-repeat: repeat;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  color: #333;
+}
+
+hr {
+  border-top: 1px solid #1abc9c;
+}
+
+nav {
+  margin: 0 auto;
+}
+
+button {
+  font-weight: 700!important;
+}
+
+.dialog_body,
+.dialog_header {
+  font-weight: 700;
+  border-bottom: 2px solid #1abc9c;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.success_tips {
+  color: #1abc9c;
+}
+
+.error_tips {
+  color: red;
+}
+
+.bg_mask {
+  z-index: 999;
+  width: 100%;
+  background-color: #000;
+  opacity: .6;
+}
+
+.dialog_box {
+  z-index: 1000;
+  margin-left: -200px;
+  margin-top: -100px;
+  left: 50%;
+  top: 50%;
+  height: 200px;
+  width: 400px;
+  border: 2px solid #1abc9c;
+  background-color: #fff;
+}
+
+.dialog_title {
+  margin-left: 3px;
+}
+
+.dialog_close {
+  float: right;
+  cursor: pointer;
+  width: 31px;
+  height: 34px;
+  text-align: center;
+}
+
+.dialog_close:hover {
+  background-color: #f60;
+}
+
+.dialog_header {
+  background-color: #1abc9c;
+  color: #fff;
+  font-size: 20px;
+}
+
+.dialog_body {
+  padding: 5px;
+  height: 58%;
+}
+
+.dialog_footer {
+  padding: 3px;
+}
+
+.dialog_footer>button {
+  float: right;
+  border-radius: 0;
+}
+.login_form {
+  margin: 0 auto;
+  min-width: 30%;
+  max-width: 40%;
+  padding: 10px;
+  border: 2px solid #1abc9c;
+  border-radius: 6px;
+}
+
+.login_form>button {
+  min-width: 100%;
+}
+.register_form {
+  margin: 0 auto;
+  min-width: 30%;
+  max-width: 40%;
+  padding: 10px;
+  border: 2px solid #1abc9c;
+  border-radius: 6px;
+}
+
+.register_form>button {
+  min-width: 100%;
 }

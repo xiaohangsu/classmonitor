@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, session, escape
-from flask import request, url_for, render_template, jsonify
+from flask import request, url_for, render_template, jsonify, redirect
 from db import userdb
 import json
 from newsCatalog import NEWSCATALOG
@@ -9,7 +9,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def main_page():
-  return render_template('index.html', path='/')
+  user = session['user']
+  if user is not None:
+    return render_template('index.html', path='/', user=session['user'])
+  else:
+    return redirect('/login')
 
 @app.route("/login")
 def  login():

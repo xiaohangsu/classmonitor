@@ -97,12 +97,20 @@ table {
   background-color: #1abc9c!important;
 }
 
+.navbar-right:last-child {
+  margin-right: 0!important;
+}
+
 .success_tips {
   color: #1abc9c;
 }
 
 .error_tips {
   color: red;
+}
+
+.logout_li img {
+  max-height: 23px;
 }
 
 .bg_mask {

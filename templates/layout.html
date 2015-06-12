@@ -49,14 +49,21 @@
       <li class="active"><a href="/register">注册</a></li>
       {% else %}
       <li class="active"><a href="/">订阅</a></li>
-      <li><a href="/latest">
+      <!-- <li><a href="/latest">
       	动态
       	<span class="navbar-new">1</span>
-      </a></li>
+      </a></li> -->
       {% endif %}
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-    	<!-- <li class="navbar-right"><a href="/ucenter">VenDream</a></li> -->
+    <ul class="nav navbar-nav navbar-right user_bar">
+    	{% if user %}
+    	<li class="navbar-right logout_li">
+    		<a href="#/logout">
+    			<img class="logout_img" src="{{url_for('static', filename='img/logout.png')}}" />
+    		</a>
+    	</li>
+    	<li><a href="#/ucenter">{{user.name}}</a></li>
+    	{% endif 	%}
     </ul>
 	</nav>
 	<script defer 

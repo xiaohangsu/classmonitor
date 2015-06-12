@@ -4,6 +4,7 @@ from flask import Flask, session, escape
 from flask import request, url_for, render_template, jsonify
 from db import userdb
 import json
+from newsCatalog import NEWSCATALOG
 app = Flask(__name__)
 
 @app.route("/")
@@ -47,18 +48,25 @@ def apiTemp_signup():
 def apiTemp_update():
     if request.method == "POST":
         formJson = request.get_json()
-        returnJson = userdb.update({  'password': escape(formJson['password']), \
-                                                        'name': escape(formJson["name"]), \
-                                                        'subscribe': escape(formJson["subscribe"]), \
-                                                        'email': escape(formJson["email"])})
+        returnJson = userdb.update({  'password': escape(formJson['password']) if formJson.get_json("password") else session["password"], \
+                                                        'name': escape(formJson["name"]) if formJson.get_json("name") else session["name"], \
+                                                        'subscribe': escape(formJson["subscribe"]) if formJson.get_json("subscribe") else session["subscribe"], \
+                                                        'email': escape(formJson["email"]) if formJson.get_json("email") else session["email"] })
         return jsonify(returnJson)
 
 @app.route("/apiTemp/get", methods=["POST"])
 def apiTemp_get():
     if request.method == "POST":
         formJson = request.get_json()
-        returnJson = userdb.get({  'uuid': formJson["uuid"]})
+        returnJson = userdb.get({  'uuid': formJson["uuid"] if formJson.has_key("uuid") else "" })
         return jsonify(returnJson)
+
+# return newsCatalog
+@app.route("/apiTemp/getNewsCatalog", methods=["POST"])
+def apiTemp_getNewsCatalog():
+    if request.method == "POST":
+        return jsonify(NEWSCATALOG)
+
 
 @app.route("/apiTemp/<param>")
 def apiTemp_default(param):

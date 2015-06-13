@@ -15,7 +15,8 @@ class ssSYSUSpider(scrapy.Spider):
         for tr in response.css("tr[bgcolor=White]"):
             #print tr.css("td").extract()[2][-21:-12].encode("utf-8") +"\n"
             item["newTitle"] = tr.css("a::text").extract()[0]
-            item["newHref"] = tr.css("a::attr(href)").extract()[0]
+            item["newHref"] = response.url.split("ArticleList.aspx")[0] \
+                                            + tr.css("a::attr(href)").extract()[0]
             #item["newColumn"] = tr.css("td span::text").extract()[0]
             item["newContent"] = "There should be some text content."
             item["newTime"] = tr.css("td").extract()[2][-21:-12].strip(">")

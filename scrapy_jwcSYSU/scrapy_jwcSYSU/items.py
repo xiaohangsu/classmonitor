@@ -10,11 +10,11 @@ import scrapy
 
 class jwcsysuItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
     newTitle = scrapy.Field()
     newContent = scrapy.Field()
     newHref = scrapy.Field()
     newTime = scrapy.Field()
+    newCatalog = scrapy.Field()
     #pass
 
 

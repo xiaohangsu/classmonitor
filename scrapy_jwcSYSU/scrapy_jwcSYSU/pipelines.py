@@ -18,7 +18,7 @@ class jwcsysuJsonExportPipeline(object):
         self.updatedNews = set()
         self.currentCatalog = ""
         self.currentCatalogList = []
-        
+
         f = open("data.json")
         for line in f:
             self.news.add(line[0:-1])

@@ -22,16 +22,17 @@ ITEM_PIPELINES = {
 START_URLS = {
     'http://jwc.sysu.edu.cn/StudentMan/Index.aspx', # 中山大学教务处 教务学籍
     'http://jwc.sysu.edu.cn/TeachReseach/Index.aspx', # 中山大学教务处 教学研究
-    'http://jwc.sysu.edu.cn/TeachPractice/Index.aspx', # 中山大学教务处 教学实践
-    'http://jwc.sysu.edu.cn/Coopration/Index.aspx', # 中山大学教务处 合作交流
-    'http://jwc.sysu.edu.cn/zhgl/Index.aspx', # 中山大学教务处 综合管理科
-    'http://jwc.sysu.edu.cn/gxyj/Index.aspx', # 中山大学教务处 教学研究科
-    'http://jwc.sysu.edu.cn/jxsj/Index.aspx', # 中山大学教务处 教学实践科
-    'http://jwc.sysu.edu.cn/departmentnews/Index.aspx', # 中山大学教务处 院务教务信息
+    #'http://jwc.sysu.edu.cn/TeachPractice/Index.aspx', # 中山大学教务处 教学实践
+    #'http://jwc.sysu.edu.cn/Coopration/Index.aspx', # 中山大学教务处 合作交流
+    #'http://jwc.sysu.edu.cn/zhgl/Index.aspx', # 中山大学教务处 综合管理科
+    #'http://jwc.sysu.edu.cn/gxyj/Index.aspx', # 中山大学教务处 教学研究科
+    #'http://jwc.sysu.edu.cn/jxsj/Index.aspx', # 中山大学教务处 教学实践科
+    #'http://jwc.sysu.edu.cn/departmentnews/Index.aspx', # 中山大学教务处 院务教务信息
 }
 
 RULES = [
-              Rule(LinkExtractor(allow=("/Item/?")) ,callback = "parse_item", follow=True),
+              Rule(LinkExtractor(allow=("/Item/?"), deny=['/Item/1575?', \
+                '/Item/1576?', '/Item/1574?', '/Item/4354?', '/Item/1580?', '/Error/?']) ,callback = "parse_item"),
   ]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

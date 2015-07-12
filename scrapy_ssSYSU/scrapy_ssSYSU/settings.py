@@ -7,8 +7,8 @@
 #
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
-from scrapy.contrib.spiders import Rule
-from scrapy.contrib.linkextractors import LinkExtractor
+from scrapy.spiders import Rule
+from scrapy.linkextractors import LinkExtractor
 
 BOT_NAME = 'scrapy_ssSYSU'
 

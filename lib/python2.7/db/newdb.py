@@ -104,22 +104,23 @@ def get(data):
         'message': message,
         'news': newsList
     }
+
 #获取所有catalog种类
 def getAllCatalog():
     #返回的信息
     message = ''
     result = False
     catalogList = []
-    count = 0;
+    count = 0
     for new in News.find():
         temp = new.get('catalog','')
         if temp != '':
-            count++
+            count = cpunt + 1
             catalogList.append(temp)
         else:
             continue
     catalogList = set(catalogList)
-    result = True;
+    result = True
     
     return {
         'result': result,

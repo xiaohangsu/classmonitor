@@ -8,6 +8,7 @@ import json
 
 from scrapy_ssSYSU.settings import FILE_NAME
 from db import newdb
+from tools import EmailSender, HTMLgenerator
 
 class ScrapySssysuPipeline(object):
     def __init__(self):
@@ -23,8 +24,8 @@ class ScrapySssysuPipeline(object):
         self.file = open(FILE_NAME, "wb")
 
     def process_item(self, item, spider):
-        self.updatedNews.add(json.dumps(dict(item), ensure_ascii=False).encode('utf-8'))
-        line = json.dumps(dict(item), ensure_ascii=False).encode('utf-8') + "\n"
+        self.updatedNews.add(json.dumps(dict(item), ensure_ascii=False, sort_keys=True).encode('utf-8'))
+        line = json.dumps(dict(item), ensure_ascii=False, sort_keys=True).encode('utf-8') + "\n"
         
         if self.currentCatalog != item["newCatalog"] and self.currentCatalog != "":
             newdb.update({'newCatalog': self.currentCatalog, 'newsList': self.currentCatalogList})
@@ -39,8 +40,9 @@ class ScrapySssysuPipeline(object):
         
         print "Here is Updated News !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
 
-        self.updatedNews -= self.news
-
+        #self.updatedNews -= self.news
+        print self.updatedNews
         self.updatedNews = list(self.updatedNews)
-
+        self.updatedNews.sort()
+        EmailSender.send_mail("SpiderEmailTest", HTMLgenerator.generate(self.updatedNews))
         self.file.close()

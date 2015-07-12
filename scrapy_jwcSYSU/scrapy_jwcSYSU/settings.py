@@ -31,7 +31,7 @@ START_URLS = {
 }
 
 RULES = [
-              Rule(LinkExtractor(allow=("/Item/?")) ,callback = "parse_item", follow=False),
+              Rule(LinkExtractor(allow=("/Item/?")) ,callback = "parse_item", follow=True),
   ]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

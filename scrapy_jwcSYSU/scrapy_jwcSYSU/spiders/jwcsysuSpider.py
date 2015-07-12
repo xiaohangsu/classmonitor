@@ -18,12 +18,12 @@ class jwcsysuSpider(CrawlSpider):
 
   def parse_item(self, response):
     item = jwcsysuItem()
+    item["newCatalog"] = response.css("div[class=sec_art_list]").css("a").extract()[2].split("<")[-2].split(">")[-1]
     item["newTitle"] = response.css("div[class=art_content]").css("h1::text").extract()[0]
     item["newContent"] = response.css("div[class=content]").extract()[0]
     item["newHref"] = response.url
     item["newTime"] = response.css("div[class=art_property]").extract()[0][-62:-52]
-    item["newCatalog"] = response.css("div[class=sec_art_list]").css("a").extract()[2].split("<")[-2].split(">")[-1]
-    print item
+    #print item
     yield item
   #parse default to parse the Title without Using Rule
 

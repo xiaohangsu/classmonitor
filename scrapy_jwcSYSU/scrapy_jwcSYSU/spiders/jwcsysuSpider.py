@@ -18,21 +18,17 @@ class jwcsysuSpider(CrawlSpider):
 
   def parse_item(self, response):
     item = jwcsysuItem()
-    item["newTitle"] = response.css("div[class=art_content]").css("h1::text").extract()[0]
-    item["newContent"] = response.css("div[class=content]").extract()[0]
-    item["newHref"] = response.url
-    item["newTime"] = response.css("div[class=art_property]").extract()[0][-62:-52]
-    item["newCatalog"] = response.css("div[class=sec_art_list]").css("a").extract()[2].split("<")[-2].split(">")[-1]
-    print item
-    yield item
+    try:
+      item["newCatalog"] = response.css("div[class=sec_art_list]").css("a").extract()[2].split("<")[-2].split(">")[-1]
+      item["newTitle"] = response.css("div[class=art_content]").css("h1::text").extract()[0]
+      item["newContent"] = response.css("div[class=content]").extract()[0]
+      item["newHref"] = response.url
+      item["newTime"] = response.css("div[class=art_property]").extract()[0][-62:-52]
+      return item
+    except Exception, e:
+      return None
+
+    #print item
+
   #parse default to parse the Title without Using Rule
 
-  def parse_default(self, response):
-    print "Start ScrapyING\n"
-    for div in response.css("div[class=art_list]"):
-      item = jwcsysuItem()
-      item["newTitle"] = div.css("h2 a::text").extract()[0]
-      for li in div.css("li"):
-        item["newContent"] = li.css("a::text").extract()[0]
-        item["newHref"] = li.css("a::attr(href)").extract()[0]
-        yield item

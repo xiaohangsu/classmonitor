@@ -87,8 +87,15 @@ def get(data):
     if checkItem(data, requireList):
         newsQueryCondition = {'newCatalog': data['newCatalog']}
         #get news
+
         for news in News.find(newsQueryCondition):
-            newsList.append(news)
+            print news
+            newsList.append({
+                "newCatalog": news["newCatalog"],
+                "newsTime": news["newTime"],
+                "newHref": news["newHref"],
+                "newContent": news["newContent"]
+                })
         if len(newsList) != 0:
             result = True
             message = 'no user'
@@ -104,22 +111,23 @@ def get(data):
         'message': message,
         'news': newsList
     }
+
 #获取所有catalog种类
 def getAllCatalog():
     #返回的信息
     message = ''
     result = False
     catalogList = []
-    count = 0;
+    count = 0
     for new in News.find():
         temp = new.get('catalog','')
         if temp != '':
-            count++
+            count = cpunt + 1
             catalogList.append(temp)
         else:
             continue
     catalogList = set(catalogList)
-    result = True;
+    result = True
     
     return {
         'result': result,

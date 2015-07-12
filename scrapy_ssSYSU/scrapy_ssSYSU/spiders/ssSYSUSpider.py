@@ -1,23 +1,32 @@
 # -*- coding: utf-8 -*-
 import scrapy
+try:
+    from scrapy.spider import Spider
+except:
+    from scrapy.spider import BaseSpider as Spider
 from scrapy_ssSYSU.items import ScrapySssysuItem
-from scrapy_ssSYSU.settings import START_URLS
+from scrapy_ssSYSU.settings import START_URLS, RULES
 
-class ssSYSUSpider(scrapy.Spider):
+from scrapy.contrib.spiders import Rule,CrawlSpider
+from scrapy.contrib.linkextractors import LinkExtractor
+
+class ssSYSUSpider(CrawlSpider):
     name = "ssSYSUSpider"
-    allowed_domains = ["http://ss.sysu.edu.cn/"]
+    allowed_domains = ["ss.sysu.edu.cn"]
     start_urls = START_URLS
+    rules = (
+        Rule(LinkExtractor(allow=("/informationsystem/Article.aspx?")) ,callback = "parse_item"),
+    )
 
-    def parse(self, response):
+
+    def parse_item(self, response):
         print "Start Parse--------------- :"
         item = ScrapySssysuItem()
-        item["newCatalog"] = response.css("a[id=ctl00_ContentPlaceContent_ColumnPath1_rtPath_ctl01_lkColumn]").extract()[0][-15:-11]
-        for tr in response.css("tr[bgcolor=White]"):
-            #print tr.css("td").extract()[2][-21:-12].encode("utf-8") +"\n"
-            item["newTitle"] = tr.css("a::text").extract()[0]
-            item["newHref"] = tr.css("a::attr(href)").extract()[0]
-            #item["newColumn"] = tr.css("td span::text").extract()[0]
-            item["newContent"] = "There should be some text content."
-            item["newTime"] = tr.css("td").extract()[2][-21:-12].strip(">")
-            yield item
-        #print response
+        item["newTitle"] = response.css("div[class=articleTitle]").extract()[0][26:-6]
+        item["newHref"] = response.url
+        item["newTime"] = response.css("span[id=ctl00_ContentPlaceContent_lblDate]").extract()[0][45:-7]
+        item["newContent"] = response.css("div[class=articleContent]").extract()[0]
+        item["newCatalog"] = response.css("a[id=ctl00_ContentPlaceContent_ColumnPath1_rtPath_ctl01_lkColumn]").extract()[0][118:-11]
+        print "item"
+        yield item
+

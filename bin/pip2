@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/sury/classmonitor/bin/python
+=======
+#!/home/kiadragon/Develop/python/classmonitor/bin/python
+>>>>>>> 2c84e8f2188d0f433580ac716999b7843e84c031
 
 # -*- coding: utf-8 -*-
 import re

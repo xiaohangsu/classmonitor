@@ -27,7 +27,6 @@ class ScrapySssysuPipeline(object):
         line = json.dumps(dict(item), ensure_ascii=False).encode('utf-8') + "\n"
         
         if self.currentCatalog != item["newCatalog"] and self.currentCatalog != "":
-            print self.currentCatalogList
             newdb.update({'newCatalog': self.currentCatalog, 'newsList': self.currentCatalogList})
             self.currentCatalogList = []
         else :

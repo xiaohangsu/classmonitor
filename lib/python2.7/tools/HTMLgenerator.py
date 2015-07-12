@@ -13,6 +13,6 @@ def generate(updatedList, url=""):
         e = eval(eOld)
         print url + e["newHref"]
         print "\n"
-        html +=  ("<a title='" +  e["newTitle"] + "' href='" + url + e["newHref"] + "'  >" + e["newContent"] + "</a><br/>")
+        html +=  ("<a title='" +  e["newCatalog"] + "' href='" + url + e["newHref"] + "'  >" + e["newTitle"] + "</a><br/>")
     html =  header + html + footer
     return html

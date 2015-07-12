@@ -7,6 +7,8 @@
 #
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
+from scrapy.contrib.spiders import Rule
+from scrapy.contrib.linkextractors import LinkExtractor
 
 BOT_NAME = 'scrapy_ssSYSU'
 
@@ -22,8 +24,6 @@ FILE_NAME = "data.json"
 START_URLS = (
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=24', # 软件学院  - 学院概况  - 学院简介
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=25', # 软件学院  - 学院概况  - 管理机构
-        'http://ss.sysu.edu.cn/informationsystem/CollegeTeacher.aspx?id=29', # 软件学院  - 学院概况  - 学院领导
-        'http://ss.sysu.edu.cn/informationsystem/CollegeTeacher.aspx?id=34', # 软件学院  - 学院概况  - 师资力量
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=35', # 软件学院  - 学院概况  - 学院纪事
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=36', # 软件学院  - 新闻中心  - 学院新闻
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=37', # 软件学院  - 新闻中心  - 招生信息
@@ -47,6 +47,10 @@ START_URLS = (
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=58', # 软件学院  - 学生工作  - 办事指南
         'http://ss.sysu.edu.cn/informationsystem/ArticleList.aspx?id=60', # 软件学院  - 学生工作  - 联系学工办
         'http://ss.sysu.edu.cn/InformationSystem/ArticleList.aspx?id=72' # 软件学院  - 学术科研  - 学术交流
+)
+
+RULES = (
+    Rule(LinkExtractor(allow = ("Article.aspx*"), ), callback = "parse_item")
 )
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

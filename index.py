@@ -2,7 +2,7 @@
 
 from flask import Flask, session, escape
 from flask import request, url_for, render_template, jsonify, redirect
-from db import userdb
+from db import userdb, newdb
 import json
 from newsCatalog import NEWSCATALOG
 app = Flask(__name__)
@@ -53,10 +53,11 @@ def apiTemp_update():
     if request.method == "POST": 
         formJson = request.get_json()
         returnJson = userdb.update({  'uuid': escape(formJson['uuid']) if formJson.has_key("uuid") else session["user"]["uuid"], \
-                                                        'password': escape(formJson['password']) if formJson.has_key("password") else session["user"]["password"], \
+                                                        'password': escape(formJson['password']) if formJson.has_key("password") else '', \
                                                         'name': escape(formJson["name"]) if formJson.has_key("name") else session["user"]["name"], \
-                                                        'subscribe': escape(formJson["subscribe"]) if formJson.has_key("subscribe") else session["user"]["subscribe"], \
-                                                        'email': escape(formJson["email"]) if formJson.has_key("email") else session["user"]["email"] })
+                                                        # subscribe might cause secure problem
+                                                        'subscribe': formJson["subscribe"] if formJson.has_key("subscribe") else session["user"]["subscribe"], \
+                                                        'email': escape(formJson["email"]) if formJson.has_key("email") else session["user"]["email"] }) 
         return jsonify(returnJson)
 
 @app.route("/apiTemp/get", methods=["POST"])
@@ -70,6 +71,16 @@ def apiTemp_get():
 def apiTemp_getNewsCatalog():
     if request.method == "POST":
         return jsonify(NEWSCATALOG)
+
+
+# return news When you give a newCatalog
+@app.route("/apiTemp/getNewsByCatalog", methods=["POST"])
+def apiTemp_getNewsByCatalog():
+    if request.method == "POST":
+        formJson = request.get_json()
+        returnJson = newdb.get({"newCatalog": escape(formJson["newCatalog"]) if formJson.has_key("newCatalog") else ''})
+        return jsonify(returnJson)
+
 
 @app.route("/apiTemp/logout", methods=["POST"])
 def apiTemp_logout():

@@ -7,8 +7,8 @@ except:
 from scrapy_ssSYSU.items import ScrapySssysuItem
 from scrapy_ssSYSU.settings import START_URLS, RULES
 
-from scrapy.spiders import Rule,CrawlSpider
-from scrapy.linkextractors import LinkExtractor
+from scrapy.contrib.spiders import Rule,CrawlSpider
+from scrapy.contrib.linkextractors import LinkExtractor
 
 class ssSYSUSpider(CrawlSpider):
     name = "ssSYSUSpider"

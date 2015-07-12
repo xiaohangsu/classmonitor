@@ -174,7 +174,7 @@ def getAllUserInfo():
     for user in Users.find():
         userInfo = {
             'loginID':user.get('loginID',''),
-            'catalog':user.get('catalog',[]),
+            'subscribe':user.get('subscribe',[]),
         }
         userList.append(userInfo)
         count += 1

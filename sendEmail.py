@@ -5,7 +5,11 @@ from db import newdb, userdb
 from tools import EmailSender, HTMLgenerator
 
 def sendEmail():
-    print newdb.get({"newCatalog":"学院概况"})
-    print userdb.getAllUserInfo()
+    users = userdb.getAllUserInfo()
+    userList = users["userList"]
+    userCount = users["userCount"]
+    for user in userList:
+        for catalog in user["subscribe"]:
+            print newdb.get({"newCatalog": catalog})
 
 sendEmail()

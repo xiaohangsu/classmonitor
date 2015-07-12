@@ -2,8 +2,8 @@
 
 #bulid a beautified HTML in HTMLgenerator
 
-#class HTMLgenerator(object):
-#    def __init__(self):
+from db import userdb
+
 header = "<div style='background: #fff; width: 600px; padding: 20px 30px;\
 margin: 0 auto;'><div style='padding: 15px 0;'><table border='0' cellspacing='0' cellpadding='0'><tbody>"
 footer = "</tbody>\

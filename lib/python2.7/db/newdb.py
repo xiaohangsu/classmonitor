@@ -87,8 +87,15 @@ def get(data):
     if checkItem(data, requireList):
         newsQueryCondition = {'newCatalog': data['newCatalog']}
         #get news
+
         for news in News.find(newsQueryCondition):
-            newsList.append(news)
+            print news
+            newsList.append({
+                "newCatalog": news["newCatalog"],
+                "newsTime": news["newTime"],
+                "newHref": news["newHref"],
+                "newContent": news["newContent"]
+                })
         if len(newsList) != 0:
             result = True
             message = 'no user'

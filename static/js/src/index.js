@@ -72,7 +72,18 @@ function logoutBinding() {
 	});
 }
 
+function avatarBinding() {
+	$('.user_avatar').on('mouseover', function() {
+		
+	});
+
+	$('.user_avatar').on('mouseout', function() {
+
+	});
+}
+
 window.onload = function() {
 	loadCatalog();
 	logoutBinding();
+	avatarBinding();
 };

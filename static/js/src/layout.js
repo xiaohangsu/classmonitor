@@ -1,10 +1,10 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-6-11
+ * UpdateAt : 2015-07-12 22:13:37
  */
 
-var FADE_TIME = 300;
+var FADE_TIME = 200;
 var NAV_TIME = 1500;
 
 // $('.dialog_close').bind('click', hide_dialog_box);
@@ -55,6 +55,11 @@ function show_dialog_box(title, content) {
 
 	$('.dialog_title').text(title);
 	$('.dialog_body').html(content);
+
+	$('html, body').css({
+		'overflow': 'hidden',
+		'height': '100%'
+	});
 }
 
 /**
@@ -63,6 +68,11 @@ function show_dialog_box(title, content) {
 function hide_dialog_box() {
 	$('.bg_mask').fadeOut(FADE_TIME);
 	$('.dialog_box').fadeOut(FADE_TIME);
+
+	$('html, body').css({
+		'overflow': 'auto',
+		'height': 'auto'
+	});
 }
 
 /**

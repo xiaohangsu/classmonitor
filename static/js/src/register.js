@@ -1,7 +1,7 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-6-11
+ * UpdateAt : 2015-07-12 22:13:51
  */
 
 $('.register_btn').click(function() {
@@ -31,6 +31,7 @@ $('.register_btn').click(function() {
 		loginID: email,
 		name: name,
 		email: email,
+		subscribe: [],
 		password: password
 	};
 

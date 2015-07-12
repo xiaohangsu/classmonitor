@@ -11,7 +11,7 @@ import uuid
 import hashlib
 from datetime import datetime
 
-#注册用户
+# 添加news
 def add(data):
     #必须带有的参数
     requireList = ['newTitle', 'newContent', 'newHref', 'newCatalog', 'newTime']
@@ -42,14 +42,14 @@ def add(data):
         'message': message,
     }
 
-# 更新用户信息函数
+# 更新信息函数
 def update(data):
     #必须带有的参数
     requireList = ['newCatalog']
     #返回的信息
     message = ''
     result = False
-    #是否存在用户
+    #是否存在
     if checkItem(data, requireList):
         newsQueryCondition = {'newCatalog': data['newCatalog']}
         delResult = News.delete_many(newsQueryCondition)
@@ -75,7 +75,7 @@ def update(data):
         'message': message,
     }
 
-# 查询用户信息
+# 查询 信息
 def get(data):
     #必须要的信息
     requireList = ['newCatalog']
@@ -104,3 +104,27 @@ def get(data):
         'message': message,
         'news': newsList
     }
+#获取所有catalog种类
+def getAllCatalog():
+    #返回的信息
+    message = ''
+    result = False
+    catalogList = []
+    count = 0;
+    for new in News.find():
+        temp = new.get('catalog','')
+        if temp != '':
+            count++
+            catalogList.append(temp)
+        else:
+            continue
+    catalogList = set(catalogList)
+    result = True;
+    
+    return {
+        'result': result,
+        'message': message,
+        'catalog': catalogList,
+        'catalogCount': count
+    }
+

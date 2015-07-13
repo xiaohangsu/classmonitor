@@ -91,10 +91,10 @@ def get(data):
         for news in News.find(newsQueryCondition):
             print news
             newsList.append({
+                "uuid": news["uuid"],
                 "newCatalog": news["newCatalog"],
                 "newsTime": news["newTime"],
                 "newHref": news["newHref"],
-                "newContent": news["newContent"]
                 })
         if len(newsList) != 0:
             result = True
@@ -112,27 +112,55 @@ def get(data):
         'news': newsList
     }
 
+#根据uuid获取content
+def getContent(data):
+    #必须要的信息
+    requireList = ['uuid']
+    #返回的信息
+    message = ''
+    result = False
+    newsContent = ''
+    findNews = {}
+    #查看是否存在用户
+    if checkItem(data, requireList):
+        newsQueryCondition = {'uuid': data['uuid']}
+        #get news
+        findNews = News.find_one(newsQueryCondition)
+        if findNews != {}:
+            newsContent = findNews.get('newContent', '')
+        else:
+            newContent = ''
+        result = True
+    else:
+        #没有足够参数
+        result = False
+        message = 'not enough params'
+    return {
+        'result': result,
+        'message': message,
+        'newsContent': newsContent
+}
+
+
 #获取所有catalog种类
 def getAllCatalog():
     #返回的信息
     message = ''
     result = False
     catalogList = []
-    count = 0
     for new in News.find():
-        temp = new.get('catalog','')
+        temp = new.get('newCatalog','')
         if temp != '':
-            count = cpunt + 1
             catalogList.append(temp)
         else:
             continue
     catalogList = set(catalogList)
+    catalogList = list(catalogList)
     result = True
     
     return {
         'result': result,
         'message': message,
-        'catalog': catalogList,
-        'catalogCount': count
+        'catalog': catalogList
     }
 

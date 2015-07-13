@@ -1,3 +1,9 @@
+/**
+ * Author   : VenDream
+ * Email    : yeshenxue@qq.com
+ * UpdateAt : 2015-07-12 22:31:43
+ */
+
 var gulp = require('gulp');
 var changed = require('gulp-changed');
 var run = require('gulp-run');
@@ -35,7 +41,7 @@ var uglify_opts = {
 
 gulp.task('js', function() {
 	console.log('[' + (new Date()).toLocaleTimeString() + '] ' + '检查JS语法错误...');
-	return gulp.src('./static/js/src/*.js')
+	return gulp.src('./js/src/*.js')
 		//.pipe(changed('./js/src*.js'))
 		.pipe(jshint())
     .pipe(jshint.reporter(stylish))
@@ -47,24 +53,19 @@ gulp.task('js', function() {
 
 gulp.task('css', function() {
 	console.log('[' + (new Date()).toLocaleTimeString() + '] ' + '检查CSS语法错误并进行压缩合并...');
-	return gulp.src('./static/css/src/*.css')
+	return gulp.src('./css/src/*.css')
 		//.pipe(changed('./css/src*.css'))
 		.pipe(csslint())
 		.pipe(csslint.reporter())
 		.pipe(cssmin())
 		.pipe(concatCss('build.css'))
-		.pipe(gulp.dest('./static/'));
+		.pipe(gulp.dest('./'));
 });
 
 gulp.task('watch', function() {
 	console.log('[' + (new Date()).toLocaleTimeString() + '] ' + '[JS|CSS] 文件改动监测中...');
-	gulp.watch('./static/js/src/*.js', ['js']);
-	gulp.watch('./static/css/src/*.css', ['css']);
+	gulp.watch('./js/src/*.js', ['js']);
+	gulp.watch('./css/src/*.css', ['css']);
 });
 
-gulp.task('server', function() {
-	console.log('[' + (new Date()).toLocaleTimeString() + '] ' + '服务器开启...');
-	run('python index.py').exec();
-});
-
-gulp.task('default', ['js', 'css', 'server', 'watch']);
+gulp.task('default', ['js', 'css', 'watch']);

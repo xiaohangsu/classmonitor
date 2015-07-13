@@ -23,6 +23,10 @@ def  login():
 def  register():
     return render_template('register.html', path='/register')
 
+@app.route("/ucenter")
+def  ucenter():
+    return render_template('ucenter.html', path='/ucenter')    
+
 @app.route("/api/<param>")
 def api_default(param):
     return  "%s" % param

@@ -86,3 +86,13 @@ function redirect(time, url) {
 		window.location = url;
 	}, time);
 }
+
+//绑定模态框的确定按钮会被Enter触发
+(function() {
+	$('body').on('keydown', function(e) {
+		if(e.keyCode == 13 && $('.bg_mask').css('display') == 'block') {
+			console.log('confirm_btn clicked');
+			$('.dialog_confirm').click();
+		}
+	});
+}());

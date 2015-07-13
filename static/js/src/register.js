@@ -46,3 +46,10 @@ $('.register_btn').click(function() {
 
 	reqData('POST', 'apiTemp/signup', send_data, registerCallback);
 });
+
+$('body').on('keydown', function(e) {
+	if(e.keyCode == 13 && $('.bg_mask').css('display') == 'none') {
+		console.log('register_btn clicked');
+		$('.register_btn').click();
+	}
+});

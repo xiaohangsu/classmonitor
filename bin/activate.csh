@@ -7,7 +7,11 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
+setenv VIRTUAL_ENV "/home/sury/classmonitor"
+=======
 setenv VIRTUAL_ENV "/home/kiadragon/Develop/python/classmonitor"
+>>>>>>> 2c84e8f2188d0f433580ac716999b7843e84c031
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

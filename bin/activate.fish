@@ -32,7 +32,11 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
+set -gx VIRTUAL_ENV "/home/sury/classmonitor"
+=======
 set -gx VIRTUAL_ENV "/home/kiadragon/Develop/python/classmonitor"
+>>>>>>> 2c84e8f2188d0f433580ac716999b7843e84c031
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

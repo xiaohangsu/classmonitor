@@ -31,6 +31,7 @@ def api_default(param):
 def apiTemp_login():
     if request.method == "POST":
         formJson = request.get_json()
+        print formJson
         returnJson = userdb.login({ 'loginID': escape(formJson["loginID"]),
                                                    'password': escape(formJson['password']) })
         if returnJson.has_key("uuid"):

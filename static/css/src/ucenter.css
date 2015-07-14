@@ -3,3 +3,37 @@
  * Email    : yeshenxue@qq.com
  * UpdateAt : 2015-07-13 00:44:25
  */
+
+.user_info_table {
+	margin: 0 auto;
+	min-width: 40%;
+	max-width: 50%;
+	padding: 10px;
+	border: 2px solid #1abc9c;
+	border-radius: 6px;
+}
+
+.user_info_table span {
+	display: inline-block;
+	width: 13%;
+	text-align: center;
+	color: red;
+}
+
+.user_info_table input {
+	display: inline-block;
+	width: 86%;
+}
+
+.user_info_table hr {
+	border-top: 2px solid #1abc9c;
+}
+
+.update_btn_groups {
+	text-align: right;
+}
+
+.update_btn_groups > a {
+	margin-right: 1%;
+	font-weight: bold;
+}

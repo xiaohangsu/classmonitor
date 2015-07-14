@@ -87,12 +87,17 @@ function redirect(time, url) {
 	}, time);
 }
 
-//绑定模态框的确定按钮会被Enter触发
+//绑定退出按钮
 (function() {
-	$('body').on('keydown', function(e) {
-		if(e.keyCode == 13 && $('.bg_mask').css('display') == 'block') {
-			console.log('confirm_btn clicked');
-			$('.dialog_confirm').click();
-		}
+	$('.logout_li').click(function() {
+		var logoutCallback = function(data) {
+			if (data.result) {
+				window.USER = null;
+				show_dialog_box('提示', '<p class="success_tips">登出成功,跳转中...</p');
+				redirect(NAV_TIME, '/');
+			}
+		};
+
+		reqData('POST', '/apiTemp/logout', {}, logoutCallback);
 	});
 }());

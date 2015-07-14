@@ -11,7 +11,7 @@ app = Flask(__name__)
 def main_page():
   user = session.get('user', None)
   if user  != None:
-    return render_template('index.html', path='/', user=session.get('user', None))
+    return render_template('index.html', path='/', user=user)
   else:
     return redirect('/login')
 
@@ -25,7 +25,11 @@ def  register():
 
 @app.route("/ucenter")
 def  ucenter():
-    return render_template('ucenter.html', path='/ucenter')    
+  user = session.get('user', None)
+  if user  != None:
+    return render_template('ucenter.html', path='/ucenter', user=user)
+  else:
+    return redirect('/login')
 
 @app.route("/api/<param>")
 def api_default(param):

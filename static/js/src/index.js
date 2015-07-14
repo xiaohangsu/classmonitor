@@ -59,20 +59,6 @@ function appendCatalog(source, catalog) {
 	});
 }
 
-function logoutBinding() {
-	$('.logout_li').click(function() {
-		var logoutCallback = function(data) {
-			if(data.result) {
-				show_dialog_box('提示', '<p class="success_tips">登出成功,跳转中...</p');
-				redirect(NAV_TIME, '/');
-			}
-		};
-
-		reqData('POST', '/apiTemp/logout', {}, logoutCallback);
-	});
-}
-
 window.onload = function() {
 	loadCatalog();
-	logoutBinding();
 };

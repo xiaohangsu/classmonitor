@@ -1,10 +1,37 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 
 {% block title %}
 <title>个人中心</title>
 {% endblock %}
 
 {% block body %}
-<p>用户中心</p>
-<script defer type="text/javascript" src="{{url_for('static', filename='js/src/ucenter.js')}}"></script>
+{% if user %}
+<div class="user_info_table">
+	<div class="form-group">
+		<span>邮箱</span>
+		<input name="email" type="text" value={{user.email}} class="form-control input-sm login_email"/>
+	</div>
+
+	<div class="form-group">
+		<span>昵称</span>
+		<input name="name" type="text" value={{user.name}} class="form-control input-sm login_email"/>
+	</div>
+
+	<div class="form-group">
+		<span>密码</span>
+		<input name="password" type="text" placeholder="输入新密码,不少于6位" class="form-control input-sm login_email"/>
+	</div>
+
+	<div class="update_btn_groups">
+		<a href="/" class="btn btn-embossed btn-primary goback_btn">
+	  	返回
+		</a>
+		<button class="btn btn-embossed btn-primary update_btn">
+	  	提交
+		</button>
+	</div>
+	
+</div>
+{% endif %}
+<script defer type="text/javascript" src="{{url_for("static", filename="js/src/ucenter.js")}}"></script>
 {% endblock %}

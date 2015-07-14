@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -22,6 +25,8 @@ public class SubscribeActivity extends ActionBarActivity{
     private ListView mListView;
     private Handler handler;
     private Runnable getMsg;
+    private SimpleAdapter mSimpleAdapter;
+    private Button SubscribeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +37,17 @@ public class SubscribeActivity extends ActionBarActivity{
     }
 
     private void init() {
+        SubscribeBtn = (Button)findViewById(R.id.subButton);
+        SubscribeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         setData();
-        mListView = (ListView)findViewById(R.id.classListView);
+        Log.i("setData", mDataList.toString());
 
-        final SimpleAdapter mSimpleAdapter = new SimpleAdapter(this,
-                mDataList, R.layout.list_item,
-                new String[]{"source","class"},
-                new int[]{R.id.listSourceText, R.id.listClassText});
-
-        mListView.setAdapter(mSimpleAdapter);
     }
 
     private void setData() {
@@ -52,6 +59,12 @@ public class SubscribeActivity extends ActionBarActivity{
             public void handleMessage(Message msg) {
                 if (msg.what == 1) {
                     mProgressDialog.dismiss();
+                    mListView = (ListView)findViewById(R.id.classListView);
+                    mSimpleAdapter = new SimpleAdapter(SubscribeActivity.this,
+                            mDataList, R.layout.list_item,
+                            new String[]{"source","class"},
+                            new int[]{R.id.listSourceText, R.id.listClassText});
+                    mListView.setAdapter(mSimpleAdapter);
                 }
             }
         };
@@ -60,9 +73,11 @@ public class SubscribeActivity extends ActionBarActivity{
             @Override
             public void run() {
                 if (!mDataList.isEmpty()){
+                    Log.i("setDatabefore", mDataList.toString());
                     handler.obtainMessage(1).sendToTarget();
                 } else {
-                   mDataList = MyRequest.getMapList();
+                    mDataList = MyRequest.getMapList();
+                    Log.i("setDatabemid", mDataList.toString());
                     handler.postDelayed(getMsg, 100);
                 }
             }

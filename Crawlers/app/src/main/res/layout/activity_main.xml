@@ -62,6 +62,12 @@
                 android:hint="密码" />
         </LinearLayout>
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:id="@+id/checkBox" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

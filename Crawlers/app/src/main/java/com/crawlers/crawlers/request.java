@@ -22,9 +22,9 @@ import java.util.Map;
  * Created by sury on 15-6-20.
  */
 public class request {
-    private static final String LoginNamespace = "http://192.168.18.205:5000/apiTemp/login";
-    private static final String SignupNamespace = "http://192.168.18.205:5000/apiTemp/signup";
-    private static final String getCatalogNameSpace = "http://192.168.18.205:5000/apiTemp/getNewsCatalog";
+    private static final String LoginNamespace = "http://128.199.91.212:5000/apiTemp/login";
+    private static final String SignupNamespace = "http://128.199.91.212:5000/apiTemp/signup";
+    private static final String getCatalogNameSpace = "http://128.199.91.212:5000/apiTemp/getNewsCatalog";
     private String email = "";
     private String password = "";
     private String name = "";
@@ -141,6 +141,7 @@ public class request {
                     mMap = new HashMap<String, String>();
                     mMap.put("source", jsonObject.getString("source").toString());
                     mMap.put("class", mString.get(l).toString());
+                    Log.i("mMap", mMap.toString());
                     tempList.add(mMap);
                 }
             }

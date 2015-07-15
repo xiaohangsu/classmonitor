@@ -56,7 +56,7 @@ gulp.task('css', function() {
 	return gulp.src('./css/src/*.css')
 		//.pipe(changed('./css/src*.css'))
 		.pipe(csslint())
-		.pipe(csslint.reporter())
+		// .pipe(csslint.reporter())
 		.pipe(cssmin())
 		.pipe(concatCss('build.css'))
 		.pipe(gulp.dest('./'));

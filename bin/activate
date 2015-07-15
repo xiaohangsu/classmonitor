@@ -39,6 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+
 VIRTUAL_ENV="/home/vendream/classmonitor"
 export VIRTUAL_ENV
 

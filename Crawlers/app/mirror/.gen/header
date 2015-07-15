@@ -1,0 +1,8 @@
+#Automatically generated header file. Editing this file may cause problems.
+#Sun Jun 21 14:58:25 CST 2015
+serverVersion=2.5.5
+dexState=SANDBOX_UPDATED
+package=com.crawlers.crawlers
+version=8
+serverVersionCode=64
+appTheme=@style/AppTheme

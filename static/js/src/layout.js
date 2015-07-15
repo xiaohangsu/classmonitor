@@ -6,6 +6,7 @@
 
 var FADE_TIME = 200;
 var NAV_TIME = 1500;
+var LOCAL_USER = {};
 
 // $('.dialog_close').bind('click', hide_dialog_box);
 $('.dialog_confirm').bind('click', hide_dialog_box);
@@ -92,7 +93,7 @@ function redirect(time, url) {
 	$('.logout_li').click(function() {
 		var logoutCallback = function(data) {
 			if (data.result) {
-				window.USER = null;
+				LOCAL_USER = null;
 				show_dialog_box('提示', '<p class="success_tips">登出成功,跳转中...</p');
 				redirect(NAV_TIME, '/');
 			}

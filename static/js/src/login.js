@@ -26,8 +26,6 @@ $('.login_btn').click(function() {
 	var loginCallback = function(data) {
 		if(data.result) {
 			reqData('POST', '/apiTemp/get', {}, function(data) {
-				window.USER = data.user;
-				console.log(window.USER);
 				if(data.result) {
 					show_dialog_box('提示', '<p class="success_tips">登陆成功,自动跳转中...</p>');
 					redirect(NAV_TIME, '/');

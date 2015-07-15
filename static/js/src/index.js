@@ -38,7 +38,6 @@ function appendCatalog(source, catalog) {
 		var self = $(this);
 		//订阅
 		if ($(this).text() == '订阅') {
-			console.log(1);
 			show_dialog_box('提示', '订阅成功');
 
 			self.text('退订');
@@ -48,7 +47,6 @@ function appendCatalog(source, catalog) {
 
 			//取消订阅
 		} else if ($(this).text() == '退订') {
-			console.log(2);
 			show_dialog_box('提示', '退订成功');
 
 			self.text('订阅');
@@ -60,5 +58,6 @@ function appendCatalog(source, catalog) {
 }
 
 window.onload = function() {
+	console.log(LOCAL_USER);
 	loadCatalog();
 };

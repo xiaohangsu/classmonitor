@@ -30,6 +30,7 @@ public class MainActivity extends ActionBarActivity {
     private Runnable getMsg;
     private String Answer = "";
     private SharedPreferences sp;
+    private Bundle mBundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,9 @@ public class MainActivity extends ActionBarActivity {
             password.setText(sp.getString("password", ""));
         }
 
+        /**
+         * 登录按钮，启动登录线程并等待返回
+         */
         ConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +88,11 @@ public class MainActivity extends ActionBarActivity {
                         if (msg.what == 1) {
                             mProgressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
-                            jumpToSubscribe();
+                            mIntent.setClass(MainActivity.this, SubscribeActivity.class);
+                            mBundle.putString("email", email.getText().toString());
+                            mBundle.putString("password", password.getText().toString());
+                            mIntent.putExtras(mBundle);
+                            startActivity(mIntent);
                         } else if (msg.what == 2) {
                             mProgressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "登录失败", Toast.LENGTH_SHORT).show();
@@ -113,6 +121,10 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+        /**
+         * 注册按钮，跳转到注册页面
+         */
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,11 +134,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-    }
-
-    private void jumpToSubscribe() {
-        mIntent.setClass(MainActivity.this, SubscribeActivity.class);
-        startActivity(mIntent);
     }
 
     @Override

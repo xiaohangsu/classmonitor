@@ -1,6 +1,7 @@
 package com.crawlers.crawlers;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,6 +24,8 @@ public class SignupActivity extends ActionBarActivity {
     private Handler handler;
     private Runnable getMsg;
     private String Answer = "";
+    private Intent mIntent = new Intent();
+    private Bundle mBundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,11 @@ public class SignupActivity extends ActionBarActivity {
                             if (msg.what == 1) {
                                 mProgressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT).show();
-
+                                mIntent.setClass(SignupActivity.this, SubscribeActivity.class);
+                                mBundle.putString("email", email.getText().toString());
+                                mBundle.putString("password", psw1.getText().toString());
+                                mIntent.putExtras(mBundle);
+                                startActivity(mIntent);
                             } else if (msg.what == 2) {
                                 mProgressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "注册失败:该用户已存在", Toast.LENGTH_SHORT).show();

@@ -60,6 +60,20 @@ function isContain(array, ele) {
 }
 
 /**
+ * 把一个元素从数组中剔除
+ * @param {array[]} 数组
+ * @param {ele} 要剔除的元素 
+ * @return {void}
+ */
+function remove(array, ele) {
+	var len = array.length;
+	for(var i = 0; i < len; i++) {
+		if(array[i] === ele)
+			array.splice(i, 1)
+	}
+}
+
+/**
  * 显示模态框,可自定义标题和正文
  * @param {string} 模态框标题
  * @param {string} 模态框正文
@@ -102,8 +116,6 @@ function redirect(time, url) {
 		window.location = url;
 	}, time);
 }
-
-
 
 //绑定退出按钮
 (function() {

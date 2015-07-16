@@ -3,6 +3,11 @@
   background-color: #eee;
 }
 
+.catalog_link,
+.user_avatar {
+  cursor: pointer;
+}
+
 .catalog_table {
   margin: 0 auto;
   min-width: 50%;
@@ -38,8 +43,13 @@
   background-color: grey;
 }
 
-.user_avatar {
-  cursor: pointer;
+.catalog_link {
+  text-decoration: underline;
+  transition: color .3s;
+}
+
+.catalog_link:hover {
+  color: red;
 }
 .bg_mask,
 body,

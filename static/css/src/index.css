@@ -49,3 +49,13 @@
 .user_avatar {
 	cursor: pointer;
 }
+
+.catalog_link {
+	cursor: pointer;
+	text-decoration: underline;
+	transition: color 0.3s;
+}
+
+.catalog_link:hover {
+	color: #ff0000;
+}

@@ -25,8 +25,12 @@ $('.login_btn').click(function() {
 
 	var loginCallback = function(data) {
 		if(data.result) {
-			show_dialog_box('提示', '<p class="success_tips">登陆成功,自动跳转中...</p>');
-			redirect(NAV_TIME, '/');
+			reqData('POST', '/apiTemp/get', {}, function(data) {
+				if(data.result) {
+					show_dialog_box('提示', '<p class="success_tips">登陆成功,自动跳转中...</p>');
+					redirect(NAV_TIME, '/');
+				}
+			});
 		} else {
 			show_dialog_box('提示', '<p class="error_tips">登陆失败:邮箱或密码错误</p>');
 		}
@@ -34,3 +38,9 @@ $('.login_btn').click(function() {
 
 	reqData('POST', '/apiTemp/login', send_data, loginCallback);
 });
+
+$('body').on('keydown', function(e) {
+	if(e.keyCode == 13 && $('.bg_mask').css('display') == 'none') {
+		$('.login_btn').click();
+	}
+}); 

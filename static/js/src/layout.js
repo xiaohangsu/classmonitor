@@ -1,11 +1,12 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-6-11
+ * UpdateAt : 2015-07-12 22:13:37
  */
 
-var FADE_TIME = 300;
+var FADE_TIME = 200;
 var NAV_TIME = 1500;
+var LOCAL_USER = {};
 
 // $('.dialog_close').bind('click', hide_dialog_box);
 $('.dialog_confirm').bind('click', hide_dialog_box);
@@ -55,6 +56,11 @@ function show_dialog_box(title, content) {
 
 	$('.dialog_title').text(title);
 	$('.dialog_body').html(content);
+
+	$('html, body').css({
+		'overflow': 'hidden',
+		'height': '100%'
+	});
 }
 
 /**
@@ -63,6 +69,11 @@ function show_dialog_box(title, content) {
 function hide_dialog_box() {
 	$('.bg_mask').fadeOut(FADE_TIME);
 	$('.dialog_box').fadeOut(FADE_TIME);
+
+	$('html, body').css({
+		'overflow': 'auto',
+		'height': 'auto'
+	});
 }
 
 /**
@@ -76,3 +87,18 @@ function redirect(time, url) {
 		window.location = url;
 	}, time);
 }
+
+//绑定退出按钮
+(function() {
+	$('.logout_li').click(function() {
+		var logoutCallback = function(data) {
+			if (data.result) {
+				LOCAL_USER = null;
+				show_dialog_box('提示', '<p class="success_tips">登出成功,跳转中...</p');
+				redirect(NAV_TIME, '/');
+			}
+		};
+
+		reqData('POST', '/apiTemp/logout', {}, logoutCallback);
+	});
+}());

@@ -55,6 +55,8 @@ def update(data):
         delResult = News.delete_many(newsQueryCondition)
         if delResult.acknowledged:
             if len(data['newsList']) > 0:
+                for item in data['newsList']:
+                    item['uuid'] = uuid.uuid1().hex
                 addResult = News.insert_many(data['newsList'])
                 if addResult.acknowledged:
                     result = True

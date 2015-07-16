@@ -42,3 +42,6 @@
 	line-height: 0.1;
 }
 
+.user_avatar {
+	cursor: pointer;
+}

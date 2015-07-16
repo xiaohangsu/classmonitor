@@ -33,10 +33,14 @@ end
 deactivate nondestructive
 
 <<<<<<< HEAD
+set -gx VIRTUAL_ENV "/home/vendream/classmonitor"
+=======
+<<<<<<< HEAD
 set -gx VIRTUAL_ENV "/home/sury/classmonitor"
 =======
 set -gx VIRTUAL_ENV "/home/kiadragon/Develop/python/classmonitor"
 >>>>>>> 2c84e8f2188d0f433580ac716999b7843e84c031
+>>>>>>> 2f098fb2ba392efcf7cb6e4c8c56bb5fb9e3dd8b
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

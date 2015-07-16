@@ -1,7 +1,7 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-6-11
+ * UpdateAt : 2015-07-12 22:13:51
  */
 
 $('.register_btn').click(function() {
@@ -31,6 +31,7 @@ $('.register_btn').click(function() {
 		loginID: email,
 		name: name,
 		email: email,
+		subscribe: [],
 		password: password
 	};
 
@@ -44,4 +45,11 @@ $('.register_btn').click(function() {
 	};
 
 	reqData('POST', 'apiTemp/signup', send_data, registerCallback);
+});
+
+$('body').on('keydown', function(e) {
+	if(e.keyCode == 13 && $('.bg_mask').css('display') == 'none') {
+		console.log('register_btn clicked');
+		$('.register_btn').click();
+	}
 });

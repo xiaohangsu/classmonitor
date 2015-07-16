@@ -1,7 +1,7 @@
 /** 
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-07-16 00:32:08
+ * UpdateAt : 2015-07-16 08:52:15
  */
 
 function updateBinding() {
@@ -20,11 +20,11 @@ function updateBinding() {
 		}
 		if (checkEmpty(password)) {
 			show_dialog_box('提示', '密码不能为空');
-			return;	
+			return;
 		}
 		if (!checkEmpty(password) && password.length < 6) {
 			show_dialog_box('提示', '密码长度不能少于6位');
-			return;	
+			return;
 		}
 
 		var send_data = {
@@ -34,10 +34,15 @@ function updateBinding() {
 		};
 
 		var updateCallback = function(data) {
-			if(data.result) {
-				show_dialog_box('提示', '<p class="success_tips">更新成功</p>');
-				LOCAL_USER = data.user;
-				redirect(NAV_TIME, '/ucenter');
+			if (data.result) {
+				show_dialog_box('提示', '<p class="success_tips">更新成功,请重新登陆</p>');
+				var logoutCallback = function(data) {
+					if (data.result) {
+						redirect(NAV_TIME, '/');
+					}
+				};
+
+				reqData('POST', '/apiTemp/logout', {}, logoutCallback);
 			} else {
 				show_dialog_box('提示', '<p class="error_tips">更新失败</p>');
 			}
@@ -48,16 +53,5 @@ function updateBinding() {
 }
 
 document.body.onload = function() {
-	var getUserInfo = function(data) {
-		if(data.result) {
-			LOCAL_USER = data.user;
-			$('.update_email').val(LOCAL_USER.email);
-			$('.update_name').val(LOCAL_USER.name);
-		} else {
-			console.log('无法获取用户信息');
-		}
-	};
-	reqData('POST', '/apiTemp/get', {}, getUserInfo);
-	
 	updateBinding();
 };

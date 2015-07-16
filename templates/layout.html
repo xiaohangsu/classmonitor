@@ -48,10 +48,6 @@
       <li class="active"><a href="/ucenter">个人中心</a></li>
       {% else %}
       <li class="active"><a href="/">订阅</a></li>
-      <li><a href="#/latest">
-      	动态
-      	<span class="navbar-new">1</span>
-      </a></li>
       {% endif %}
     </ul>
     <!-- NavBar Body Right -->
@@ -64,7 +60,7 @@
     	</li>
     	<li>
 			  <a class="user_avatar dropdown-toggle" data-toggle="dropdown">
-			    {{user.name}}<span class="caret"></span>
+			  	{{user.name}}<span class="caret"></span>
 			  </a>
 			  <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
 			    <li><a href="/ucenter">个人中心</a></li>

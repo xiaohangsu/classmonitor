@@ -1,12 +1,11 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-07-12 22:13:37
+ * UpdateAt : 2015-07-16 08:50:23
  */
 
 var FADE_TIME = 200;
 var NAV_TIME = 1500;
-var LOCAL_USER = {};
 
 // $('.dialog_close').bind('click', hide_dialog_box);
 $('.dialog_confirm').bind('click', hide_dialog_box);
@@ -42,6 +41,22 @@ function reqData(method, url, data, callback) {
  */
 function checkEmpty(value) {
 	return value === '';
+}
+
+/**
+ * 检测一个元素是否在数组内
+ * @param {array[]} 数组
+ * @param {ele} 要检测的元素 
+ * @return {bool}
+ */
+function isContain(array, ele) {
+	var len = array.length;
+	for(var i = 0; i < len; i++) {
+		if(array[i] === ele)
+			return true;
+	}
+
+	return false;
 }
 
 /**
@@ -88,12 +103,13 @@ function redirect(time, url) {
 	}, time);
 }
 
+
+
 //绑定退出按钮
 (function() {
 	$('.logout_li').click(function() {
 		var logoutCallback = function(data) {
 			if (data.result) {
-				LOCAL_USER = null;
 				show_dialog_box('提示', '<p class="success_tips">登出成功,跳转中...</p');
 				redirect(NAV_TIME, '/');
 			}

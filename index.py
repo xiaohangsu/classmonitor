@@ -75,6 +75,15 @@ def apiTemp_get():
         returnJson = userdb.get({  'uuid': session["user"]["uuid"] if session["user"].has_key("uuid") else "" })
         return jsonify(returnJson)
 
+@app.route("/apiTemp/getInfo", methods=["POST"])
+def apiTemp_getInfo():
+    if request.method == "POST":
+        formJson = request.get_json()
+        print formJson
+        returnJson = userdb.getUserInfo({ 'loginID': escape(formJson["loginID"]),
+                                                   'password': escape(formJson['password']) })
+        return jsonify(returnJson)
+
 # return newsCatalog
 @app.route("/apiTemp/getNewsCatalog", methods=["POST"])
 def apiTemp_getNewsCatalog():

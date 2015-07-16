@@ -42,6 +42,10 @@
 	line-height: 0.1;
 }
 
+.unsubscribe_btn {
+	background-color: grey;
+}
+
 .user_avatar {
 	cursor: pointer;
 }

@@ -185,3 +185,44 @@ def getAllUserInfo():
         'userList': userList,
         'userCount': count
     }
+
+# 查询用户个数和信息
+def getUserInfo(data):
+    #返回的信息
+    requireList = ['loginID', 'password']
+    #返回的信息
+    message = ''
+    result = False
+    uuid = ""
+    user = {}
+    #首先检查是否存在loginID 和 password
+    if checkItem(data, requireList):
+        #检查是否存在的相同的loginID
+        queryCondition = {'loginID': data['loginID']}
+        user = Users.find_one(queryCondition)
+        if user is None:
+            result = False
+            message = 'no user exist'
+        else:
+            if data['loginID'] == user['loginID'] and \
+            hashlib.sha1(data['password']).hexdigest() == user['password']:
+                uuid = user["uuid"]
+                #删除敏感信息
+                del user['password']
+                del user['_id']
+                result = True
+            else:
+                user = {}#if password is wrong, clear user. Not to return the uuid.
+                result = False
+                message = 'loginID or password error'
+
+    else:
+        #没有足够的参数
+        result = False
+        message = 'not enough params'
+    #返回出去
+    return {
+        'result': result,
+        'message': message,
+        'user': user
+    }

@@ -69,7 +69,7 @@ function remove(array, ele) {
 	var len = array.length;
 	for(var i = 0; i < len; i++) {
 		if(array[i] === ele)
-			array.splice(i, 1)
+			array.splice(i, 1);
 	}
 }
 
@@ -82,6 +82,7 @@ function remove(array, ele) {
 function show_dialog_box(title, content) {
 	$('.bg_mask').fadeIn(FADE_TIME);
 	$('.dialog_box').fadeIn(FADE_TIME);
+	$('input').unbind().blur();
 
 	$('.dialog_title').text(title);
 	$('.dialog_body').html(content);

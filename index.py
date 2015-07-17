@@ -31,6 +31,15 @@ def  ucenter():
   else:
     return redirect('/login')
 
+@app.route("/news")
+def  news():
+  user = session.get('user', None)
+  if user  != None:
+    catalog =  request.args.get('catalog');
+    return render_template('news.html', path='/news', catalog=catalog, user=user)
+  else:
+    return redirect('/login')
+
 @app.route("/api/<param>")
 def api_default(param):
     return  "%s" % param

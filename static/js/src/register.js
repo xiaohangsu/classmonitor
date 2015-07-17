@@ -31,7 +31,6 @@ $('.register_btn').click(function() {
 		loginID: email,
 		name: name,
 		email: email,
-		subscribe: [],
 		password: password
 	};
 

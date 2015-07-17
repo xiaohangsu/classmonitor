@@ -46,6 +46,8 @@
       <li class="active"><a href="/register">注册</a></li>
       {% elif path == '/ucenter' %}
       <li class="active"><a href="/ucenter">个人中心</a></li>
+      {% elif path == '/news' %}
+      <li class="active"><a href="/news?catalog={{catalog}}">{{catalog}}</a></li>
       {% else %}
       <li class="active"><a href="/">订阅</a></li>
       {% endif %}

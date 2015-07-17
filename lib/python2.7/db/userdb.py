@@ -113,9 +113,11 @@ def update(data):
         else:
             #不更新uuid
             del data['uuid']
-            #跟新密码
+            #更新密码
             if data.get('password', '') != '':
                 data['password'] = hashlib.sha1(data['password']).hexdigest()
+            else:
+                del data['password']
             Users.update({'uuid': user['uuid']}, {"$set": data})
             user = Users.find_one(userQueryCondition)
             #删除敏感信息

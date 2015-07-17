@@ -29,7 +29,7 @@ function appendCatalog(source, catalog) {
 	var isSubscribe = isContain(SUBSCRIBE, catalog);
 
 	td_s.innerText = source;
-	td_c.innerHTML = "<span class='catalog_link'>" + catalog + "</span>";
+	td_c.innerHTML = "<span class='catalog_link' catalog=" + catalog + ">" + catalog + "</span>";
 	sub_btn.innerText = isSubscribe ? '退订' : '订阅';
 	sub_btn.className = isSubscribe ? 'btn btn-embossed btn-primary subscribe_btn unsubscribe_btn' :
 		'btn btn-embossed btn-primary subscribe_btn';
@@ -82,7 +82,7 @@ function eventBinding() {
 					console.log('退订失败');
 					SUBSCRIBE.push(targetCatalog);
 				}
-			}
+			};
 
 			reqData('POST', '/apiTemp/update', {
 				subscribe: SUBSCRIBE
@@ -92,7 +92,7 @@ function eventBinding() {
 
 	$('.catalog_link').unbind().click(function() {
 		window.location = '/news?catalog=' + $(this).attr('catalog');
-	})
+	});
 }
 
 function getSubscribeList() {
@@ -100,7 +100,6 @@ function getSubscribeList() {
 		if (data) {
 			SUBSCRIBE = data.user.subscribe;
 			loadCatalog();
-			console.log(SUBSCRIBE);
 		} else {
 			console.log('获取订阅列表失败');
 		}

@@ -22,9 +22,7 @@ def generate(updatedList, url=""):
     currentCatalog = ""
     for eOld in updatedList:
         e = eval(eOld)
-        print e
         if currentCatalog != e["newCatalog"]:
-
             currentCatalog = e["newCatalog"]
             html += ("<td><h3 style='height: 30px; color: #943907; width: 250px; margin: 0; padding: 15px 0 2px; border-bottom: 1px solid #943907; line-height: 30px; font-size: 18px;'>" + \
                 e["newCatalog"] + "</h3></td>")
@@ -50,5 +48,4 @@ def generateForSendEmail(updatedList, url=""):
         else:
             continue
     html =  header + html + footer
-    print "html"
     return html

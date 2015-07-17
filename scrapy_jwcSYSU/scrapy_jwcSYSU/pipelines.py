@@ -31,7 +31,7 @@ class jwcsysuJsonExportPipeline(object):
     def process_item(self, item, spider):
         self.updatedNews.add(json.dumps(dict(item), ensure_ascii=False, sort_keys=True).encode('utf-8'))
         line = json.dumps(dict(item), ensure_ascii=False, sort_keys=True).encode('utf-8') + "\n"
-        self.newsList.append(json.dumps(dict(item), ensure_ascii=False, sort_keys=True).encode('utf-8'))
+        self.newsList.append(dict(item))
         self.file.write(line)
         return item
 

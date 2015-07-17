@@ -80,7 +80,6 @@ def apiTemp_get():
 def apiTemp_getInfo():
     if request.method == "POST":
         formJson = request.get_json()
-        print formJson
         returnJson = userdb.getUserInfo({ 'loginID': escape(formJson["loginID"]),
                                                    'password': escape(formJson['password']) })
         return jsonify(returnJson)

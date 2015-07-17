@@ -6,11 +6,11 @@
 
 var SUBSCRIBE = [];
 
-function loadCatalog() {
+function loadCatalog(sub) {
 	var loadCallback = function(data) {
 		data.data.map(function(obj) {
 			obj.list.map(function(catalog) {
-				appendCatalog(obj.source, catalog);
+				appendCatalog(obj.source, catalog, sub);
 			});
 		});
 	};
@@ -18,7 +18,7 @@ function loadCatalog() {
 	reqData('POST', '/apiTemp/getNewsCatalog', {}, loadCallback);
 }
 
-function appendCatalog(source, catalog) {
+function appendCatalog(source, catalog, sub) {
 	//创建元素
 	var tr = document.createElement('tr');
 	var td_s = document.createElement('td');
@@ -26,7 +26,7 @@ function appendCatalog(source, catalog) {
 	var td_b = document.createElement('td');
 	var sub_btn = document.createElement('button');
 
-	var isSubscribe = isContain(SUBSCRIBE, catalog);
+	var isSubscribe = isContain(sub, catalog);
 
 	td_s.innerText = source;
 	td_c.innerHTML = "<span class='catalog_link' catalog=" + catalog + ">" + catalog + "</span>";
@@ -41,18 +41,18 @@ function appendCatalog(source, catalog) {
 	tr.appendChild(td_b);
 	$('.catalog_table').append($(tr));
 
-	eventBinding();
+	eventBinding(sub);
 }
 
-function eventBinding() {
+function eventBinding(sub) {
 	//订阅退订事件绑定
 	$('.subscribe_btn').unbind().click(function() {
 		var self = $(this);
 		var targetCatalog = $(this).attr('catalog');
 		//订阅
 		if ($(this).text() == '订阅') {
-			SUBSCRIBE.push(targetCatalog);
-			console.log(SUBSCRIBE);
+			sub.push(targetCatalog);
+			console.log(sub);
 
 			var handleSubscribe = function(data) {
 				if (data.result) {
@@ -61,17 +61,17 @@ function eventBinding() {
 					show_dialog_box('提示', '订阅成功');
 				} else {
 					console.log('订阅失败');
-					SUBSCRIBE.pop();
+					sub.pop();
 				}
 			};
 
 			reqData('POST', '/apiTemp/update', {
-				subscribe: SUBSCRIBE
+				subscribe: sub
 			}, handleSubscribe);
 			//取消订阅
 		} else if ($(this).text() == '退订') {
-			remove(SUBSCRIBE, targetCatalog);
-			console.log(SUBSCRIBE);
+			remove(sub, targetCatalog);
+			console.log(sub);
 
 			var handleUnsubscribe = function(data) {
 				if (data.result) {
@@ -80,12 +80,12 @@ function eventBinding() {
 					show_dialog_box('提示', '退订成功');
 				} else {
 					console.log('退订失败');
-					SUBSCRIBE.push(targetCatalog);
+					sub.push(targetCatalog);
 				}
 			};
 
 			reqData('POST', '/apiTemp/update', {
-				subscribe: SUBSCRIBE
+				subscribe: sub
 			}, handleUnsubscribe);
 		}
 	});
@@ -95,19 +95,6 @@ function eventBinding() {
 	});
 }
 
-function getSubscribeList() {
-	var getSubscribe = function(data) {
-		if (data) {
-			SUBSCRIBE = data.user.subscribe;
-			loadCatalog();
-		} else {
-			console.log('获取订阅列表失败');
-		}
-	};
-
-	reqData('POST', '/apiTemp/get', {}, getSubscribe);
-}
-
 window.onload = function() {
-	getSubscribeList();
+	getSubscribeList(SUBSCRIBE, loadCatalog);
 };

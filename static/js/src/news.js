@@ -33,7 +33,7 @@ function appendNews(news) {
 	var read_btn = document.createElement('button');
 
 	td_title.innerText = news.newTitle;
-	td_time.innerText = news.newTime.split(':')[1];
+	td_time.innerText = news.newTime.indexOf(':') > 0 ? news.newTime.split(':')[1] : news.newTime;
 	read_btn.innerText = '阅读原文';
 	td_title.className = 'font_italic';
 	read_btn.className = 'btn btn-embossed btn-primary read_btn';

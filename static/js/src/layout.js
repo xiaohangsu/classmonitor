@@ -6,6 +6,7 @@
 
 var FADE_TIME = 200;
 var NAV_TIME = 1500;
+var SUBSCRIBE_LIST = [];
 
 // $('.dialog_close').bind('click', hide_dialog_box);
 $('.dialog_confirm').bind('click', hide_dialog_box);
@@ -51,8 +52,8 @@ function checkEmpty(value) {
  */
 function isContain(array, ele) {
 	var len = array.length;
-	for(var i = 0; i < len; i++) {
-		if(array[i] === ele)
+	for (var i = 0; i < len; i++) {
+		if (array[i] === ele)
 			return true;
 	}
 
@@ -67,8 +68,8 @@ function isContain(array, ele) {
  */
 function remove(array, ele) {
 	var len = array.length;
-	for(var i = 0; i < len; i++) {
-		if(array[i] === ele)
+	for (var i = 0; i < len; i++) {
+		if (array[i] === ele)
 			array.splice(i, 1);
 	}
 }
@@ -118,6 +119,24 @@ function redirect(time, url) {
 	}, time);
 }
 
+/**
+ * 获取用户订阅列表
+ * @param {array} 保存结果的列表
+ * @param {callback} 获取成功后的回调函数
+ */
+function getSubscribeList(sub, callback) {
+	var getSubscribe = function(data) {
+		if (data.result) {
+			sub = data.user.subscribe;
+			callback(sub);
+		} else {
+			console.log('获取订阅列表失败');
+		}
+	};
+
+	reqData('POST', '/apiTemp/get', {}, getSubscribe);
+}
+
 //绑定退出按钮
 (function() {
 	$('.logout_li').click(function() {
@@ -131,3 +150,23 @@ function redirect(time, url) {
 		reqData('POST', '/apiTemp/logout', {}, logoutCallback);
 	});
 }());
+
+//绑定邮件推送按钮
+$('.sendEmailBtn').click(function() {
+	var sendEmailCallback = function(data) {
+		if (data.result) {
+			show_dialog_box('提示', '<p class="success_tips">推送成功</p>');
+		} else {
+			show_dialog_box('提示', '<p class="error_tips">推送失败</p>');
+		}
+	}
+	var sendEmail = function(sub) {
+		reqData('POST', '/apiTemp/sendEmail', {subscribe: sub}, sendEmailCallback);
+	};
+
+	if (window.confirm('确定推送订阅内容到你的邮箱吗？'))　 {
+		getSubscribeList(SUBSCRIBE_LIST, sendEmail);
+	} else {
+		return;
+	}
+});

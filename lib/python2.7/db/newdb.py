@@ -89,14 +89,13 @@ def get(data):
     if checkItem(data, requireList):
         newsQueryCondition = {'newCatalog': data['newCatalog']}
         #get news
-
         for news in News.find(newsQueryCondition):
-            print news
             newsList.append({
                 "uuid": news["uuid"],
                 "newCatalog": news["newCatalog"],
-                "newsTime": news["newTime"],
+                "newTime": news["newTime"],
                 "newHref": news["newHref"],
+                "newTitle": news["newTitle"]
                 })
         if len(newsList) != 0:
             result = True
@@ -140,7 +139,10 @@ def getContent(data):
     return {
         'result': result,
         'message': message,
-        'newsContent': newsContent
+        'newsContent': newsContent,
+        'newTitle': findNews.get('newTitle', ''),
+        'newTime': findNews.get('newTime', ''),
+        'newCatalog': findNews.get('newCatalog', '')
 }
 
 

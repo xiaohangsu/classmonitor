@@ -1,4 +1,10 @@
 *.pyc
+local/*
+include/
+bin/
+lib/
+!lib/python2.7/db
+!lib/python2.7/tools
+!lib/python2.7/newsCatalog.py
 
 node_modules/
-

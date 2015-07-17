@@ -5,6 +5,7 @@ from flask import request, url_for, render_template, jsonify, redirect
 from db import userdb, newdb
 import json
 from newsCatalog import NEWSCATALOG
+import sendEmail
 app = Flask(__name__)
 
 @app.route("/")
@@ -88,7 +89,6 @@ def apiTemp_get():
 def apiTemp_getInfo():
     if request.method == "POST":
         formJson = request.get_json()
-        print formJson
         returnJson = userdb.getUserInfo({ 'loginID': escape(formJson["loginID"]),
                                                    'password': escape(formJson['password']) })
         return jsonify(returnJson)
@@ -107,6 +107,23 @@ def apiTemp_getNewsByCatalog():
         formJson = request.get_json()
         returnJson = newdb.get({"newCatalog": escape(formJson["newCatalog"]) if formJson.has_key("newCatalog") else ''})
         return jsonify(returnJson)
+
+# return newContent When you give a new uuid
+@app.route("/apiTemp/getNewContentByuuid", methods=["POST"])
+def apiTemp_getNewContentByuuid():
+    if request.method == "POST":
+        formJson = request.get_json()
+        returnJson = newdb.getContent({"uuid": escape(formJson["uuid"]) if formJson.has_key("uuid") else ''})
+        return jsonify(returnJson)
+
+@app.route("/apiTemp/sendEmail", methods=["POST"])
+def apiTemp_sendEmail():
+    if request.method == "POST":
+        formJson = request.get_json()
+        return jsonify(sendEmail.sendEmail(escape(formJson["loginID"]) if formJson.has_key("loginID") else session["user"]["loginID"], \
+            formJson["subscribe"] if formJson.has_key("subscribe") else session["user"]["subscribe"]))
+
+
 
 
 @app.route("/apiTemp/logout", methods=["POST"])

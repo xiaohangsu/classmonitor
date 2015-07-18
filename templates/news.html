@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>新闻预览</title>
+{% endblock %}
+
+{% block body %}
+<table class="table table-bordered news_table">
+	<thead>
+		<tr>
+			<th class="title_col">标题</th>
+			<th class="time_col">发布日期</th>
+			<th class="op_col">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	</tbody>
+</table>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/src/news.js')}}"></script>
+{% endblock %}

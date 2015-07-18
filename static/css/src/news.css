@@ -1,0 +1,58 @@
+/**
+ * Author   : VenDream
+ * Email    : yeshenxue@qq.com
+ * UpdateAt : 2015-07-18 11:22:34;
+ */
+
+.news_table {
+	margin: 0 auto;
+	min-width: 80%;
+	max-width: 90%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.news_table > thead {
+	color: #1abc9c;
+	background-color: #eee;
+}
+
+.news_table > thead > tr > th {
+	border-color: #1abc9c;
+	border-width: 2px;
+	text-align: center;
+	border-bottom-width: 1px;
+}
+
+.news_table > tbody > tr > td {
+	border-color: #1abc9c;
+	border-width: 2px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.news_table > tbody > tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.title_col {
+	width: 60%;
+}
+
+.time_col {
+	width: 20%;
+}
+
+.op_col {
+	width: 20%;
+}
+
+.font_italic {
+	font-style: italic;
+}
+
+.read_btn {
+	font-size: 14px;
+	height: 22px;
+	line-height: 0.1;
+}

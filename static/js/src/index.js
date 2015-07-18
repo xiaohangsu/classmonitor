@@ -1,7 +1,7 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-07-16 08:51:02
+ * UpdateAt : 2015-07-18 11:23:06
  */
 
 var SUBSCRIBE = [];
@@ -52,7 +52,6 @@ function eventBinding(sub) {
 		//订阅
 		if ($(this).text() == '订阅') {
 			sub.push(targetCatalog);
-			console.log(sub);
 
 			var handleSubscribe = function(data) {
 				if (data.result) {
@@ -71,7 +70,6 @@ function eventBinding(sub) {
 			//取消订阅
 		} else if ($(this).text() == '退订') {
 			remove(sub, targetCatalog);
-			console.log(sub);
 
 			var handleUnsubscribe = function(data) {
 				if (data.result) {

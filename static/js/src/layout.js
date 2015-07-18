@@ -1,7 +1,7 @@
 /**
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-07-16 08:50:23
+ * UpdateAt : 2015-07-18 11:24:20
  */
 
 var FADE_TIME = 200;
@@ -111,6 +111,7 @@ function hide_dialog_box() {
  * 指定时间后跳转到指定页面
  * @param {number} 毫秒
  * @param {string} 跳转的url
+ * @return {void}
  */
 function redirect(time, url) {
 	$('.dialog_confirm').attr('disabled', true);
@@ -123,6 +124,7 @@ function redirect(time, url) {
  * 获取用户订阅列表
  * @param {array} 保存结果的列表
  * @param {callback} 获取成功后的回调函数
+ * @return {void}
  */
 function getSubscribeList(sub, callback) {
 	var getSubscribe = function(data) {
@@ -159,7 +161,7 @@ $('.sendEmailBtn').click(function() {
 		} else {
 			show_dialog_box('提示', '<p class="error_tips">推送失败</p>');
 		}
-	}
+	};
 	var sendEmail = function(sub) {
 		reqData('POST', '/apiTemp/sendEmail', {subscribe: sub}, sendEmailCallback);
 	};

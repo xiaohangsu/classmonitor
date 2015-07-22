@@ -2,8 +2,9 @@
 local/*
 include/
 bin/
+!/lib/python2.7/newsCatalog.py
 lib/
-!lib/python2.7/newsCatalog.py
+
 !lib/python2.7/db
 !lib/python2.7/tools
 node_modules/

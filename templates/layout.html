@@ -46,6 +46,8 @@
       <li class="active"><a href="/register">注册</a></li>
       {% elif path == '/ucenter' %}
       <li class="active"><a href="/ucenter">个人中心</a></li>
+      {% elif path == '/news' %}
+      <li class="active"><a href="/news?catalog={{catalog}}">{{catalog}}</a></li>
       {% else %}
       <li class="active"><a href="/">订阅</a></li>
       {% endif %}
@@ -65,7 +67,7 @@
 			  <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
 			    <li><a href="/ucenter">个人中心</a></li>
 			    <li class="divider"></li>
-			    <li><a href="#/about">关于我们</a></li>
+			    <li><a href="/#/sendEmail" class="sendEmailBtn">推送邮件</a></li>
 			  </ul>
     	</li>
     	{% endif %}

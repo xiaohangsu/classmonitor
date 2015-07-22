@@ -1,7 +1,7 @@
 /** 
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-6-11
+ * UpdateAt : 2015-07-18 11:27:56
  */
 
 $('.login_btn').click(function() {
@@ -9,7 +9,7 @@ $('.login_btn').click(function() {
 	var password = $('.login_password').val();
 
 	if(checkEmpty(email)) {
-		show_dialog_box('提示', '邮件不能为空');
+		show_dialog_box('提示', 'loginID不能为空');
 		return;
 	}
 	if(checkEmpty(password)) {

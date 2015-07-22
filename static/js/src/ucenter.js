@@ -1,7 +1,7 @@
 /** 
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-07-16 08:52:15
+ * UpdateAt : 2015-07-18 11:29:25
  */
 
 function updateBinding() {

@@ -2,7 +2,7 @@
 /** 
  * Author   : VenDream
  * Email    : yeshenxue@qq.com
- * UpdateAt : 2015-6-11
+ * UpdateAt : 2015-07-18 11:22:04;
  */
 
 .catalog_table {
@@ -48,4 +48,14 @@
 
 .user_avatar {
 	cursor: pointer;
+}
+
+.catalog_link {
+	cursor: pointer;
+	text-decoration: underline;
+	transition: color 0.3s;
+}
+
+.catalog_link:hover {
+	color: #ff0000;
 }

@@ -36,8 +36,9 @@ def generate(updatedList, url=""):
 def generateForSendEmail(updatedList, url=""):
     html = ""
     for catalogNews in updatedList:
+        print catalogNews
 
-        if catalogNews[0] != "" :
+        if len(catalogNews) != 0 :
             html += ("<td><h3 style='height: 30px; color: #943907; width: 250px; margin: 0; padding: 15px 0 2px; border-bottom: 1px solid #943907; line-height: 30px; font-size: 18px;'>" + \
                 catalogNews[0]["newCatalog"].encode("utf-8") + "</h3></td>")
             for e in catalogNews:

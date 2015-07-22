@@ -3,6 +3,11 @@
   background-color: #eee;
 }
 
+.catalog_link,
+.user_avatar {
+  cursor: pointer;
+}
+
 .catalog_table {
   margin: 0 auto;
   min-width: 50%;
@@ -38,8 +43,13 @@
   background-color: grey;
 }
 
-.user_avatar {
-  cursor: pointer;
+.catalog_link {
+  text-decoration: underline;
+  transition: color .3s;
+}
+
+.catalog_link:hover {
+  color: red;
 }
 .bg_mask,
 body,
@@ -187,6 +197,54 @@ table {
 
 .login_form>button {
   min-width: 100%;
+}
+.news_table>tbody>tr:nth-child(even),
+.news_table>thead {
+  background-color: #eee;
+}
+
+.news_table {
+  margin: 0 auto;
+  min-width: 80%;
+  max-width: 90%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.news_table>thead {
+  color: #1abc9c;
+}
+
+.news_table>thead>tr>th {
+  border-color: #1abc9c;
+  border-width: 2px 2px 1px;
+  text-align: center;
+}
+
+.news_table>tbody>tr>td {
+  border-color: #1abc9c;
+  border-width: 2px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.title_col {
+  width: 60%;
+}
+
+.op_col,
+.time_col {
+  width: 20%;
+}
+
+.font_italic {
+  font-style: italic;
+}
+
+.read_btn {
+  font-size: 14px;
+  height: 22px;
+  line-height: .1;
 }
 .register_form {
   margin: 0 auto;

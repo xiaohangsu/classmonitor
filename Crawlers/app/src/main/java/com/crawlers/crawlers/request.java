@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -27,6 +28,8 @@ public class request {
     private static final String getCatalogNameSpace = "http://128.199.91.212:5000/apiTemp/getNewsCatalog";
     private static final String getUserInfoSpace = "http://128.199.91.212:5000/apiTemp/get";
     private static final String updateUserSpace = "http://128.199.91.212:5000/apiTemp/update";
+    private static final String EmailSpace = "http://128.199.91.212:5000/apiTemp/sendEmail";
+
     private String email = "";
     private String password = "";
     private String name = "";
@@ -48,9 +51,8 @@ public class request {
         password = password_;
     }
 
-    public request(String email_, String password_, HashMap<String, String> subscribe_) {
+    public request(String email_, Map<String, String> subscribe_) {
         email = email_;
-        password = password_;
         subscribe = subscribe_;
     }
 
@@ -226,7 +228,35 @@ public class request {
         @Override
         public void run() {
             try {
+                if (subscribe.size() > 0) {
+                    JSONObject sendData = new JSONObject();
+                    JSONArray subData = new JSONArray();
+                    Iterator iter_ = subscribe.entrySet().iterator();
+                    while (iter_.hasNext()) {
+                        Map.Entry entry = (Map.Entry) iter_.next();
+                        String key = (String)entry.getKey();
+                        subData.put(key);
+                    }
+                    sendData.put("subscribe", subData);
+                    sendData.put("loginID", email);
 
+                    Log.i("datasend", sendData.toString());
+
+                    HttpPost httpPost = new HttpPost(updateUserSpace);
+                    HttpPost httpSendEmail = new HttpPost(EmailSpace);
+
+                    httpPost.addHeader("Content-Type", "application/json");
+                    httpSendEmail.addHeader("Content-Type", "application/json");
+                    httpPost.setEntity(new StringEntity(sendData.toString(), "utf-8"));
+                    httpSendEmail.setEntity(new StringEntity(sendData.toString(), "utf-8"));
+
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpClient httpEmailClient = new DefaultHttpClient();
+                    HttpResponse response = httpClient.execute(httpPost);
+                    HttpResponse responseE = httpEmailClient.execute(httpSendEmail);
+                    //result = getFromJson(response);
+                    Log.i("!!!!!!1", result.toString());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

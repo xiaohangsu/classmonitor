@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +28,13 @@ public class SubscribeActivity extends ActionBarActivity{
     private ListView mListView;
     private Handler handler;
     private Runnable getMsg;
-    private SimpleAdapter mSimpleAdapter;
+    private ListViewAdapter mSimpleAdapter;
     private Button SubscribeBtn;
     private Button UserInfoBtn;
     private request MyRequest = new request();
     private Bundle mBundle;
     private Map<String, String> select_status = new HashMap<String, String>();
-
+    public static HashMap<Integer, Boolean> mCheckBoxStatusHashMap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class SubscribeActivity extends ActionBarActivity{
         mBundle = this.getIntent().getExtras();
         UserInfoBtn = (Button)findViewById(R.id.UserInfo);
         SubscribeBtn = (Button)findViewById(R.id.subButton);
+        mCheckBoxStatusHashMap=new HashMap<Integer, Boolean>();
 
         UserInfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +64,9 @@ public class SubscribeActivity extends ActionBarActivity{
             public void onClick(View v) {
                 //MyRequest.startGetUserInfo();
                 Log.i("count", mListView.getCheckedItemCount() + "");
-                MyRequest = new request(mBundle.getString("email"), mBundle.getString("password").toString());
+                MyRequest = new request(mBundle.getString("email"), select_status);
                 Toast.makeText(getApplicationContext(), "操作成功", Toast.LENGTH_SHORT).show();
+                MyRequest.startSubscribeThread();
             }
         });
 
@@ -73,7 +74,6 @@ public class SubscribeActivity extends ActionBarActivity{
         Log.i("setData", mDataList.toString());
 
     }
-
 
     /**
      * 先启动线程获取可订阅栏目，再设置listview的内容
@@ -88,12 +88,17 @@ public class SubscribeActivity extends ActionBarActivity{
                     mProgressDialog.dismiss();
                     mListView = (ListView)findViewById(R.id.classListView);
                     mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                    mSimpleAdapter = new SimpleAdapter(SubscribeActivity.this,
+                    mSimpleAdapter = new ListViewAdapter(SubscribeActivity.this,
                             mDataList, R.layout.list_item,
-                            new String[]{"source","class","check"},
-                            new int[]{R.id.listSourceText, R.id.listClassText, R.id.listCheckbox});
+                            new String[]{"source","class"},
+                            new int[]{R.id.listSourceText, R.id.listClassText});
 
                     mListView.setAdapter(mSimpleAdapter);
+
+                    for (int i = 0; i <mDataList.size(); i++) {
+                        mCheckBoxStatusHashMap.put(i, false);
+                    }
+
                     mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,10 +108,12 @@ public class SubscribeActivity extends ActionBarActivity{
                                 select_status.remove(class_s);
                                 //view.setBackgroundColor(Color.rgb(216, 216, 216));
                                 ((CheckBox) view.findViewById(R.id.listCheckbox)).setChecked(false);
+                                mCheckBoxStatusHashMap.put(position, false);
                             } else {
                                 select_status.put(class_s, source_s);
                                 //view.setBackgroundColor(Color.rgb(105, 105, 105));
                                 ((CheckBox) view.findViewById(R.id.listCheckbox)).setChecked(true);
+                                mCheckBoxStatusHashMap.put(position, true);
                             }
                             Log.i("shuzu", select_status.toString());
                         }
